@@ -1,0 +1,125 @@
+﻿<div class="main" role="main" data-ng-cloak="ng-cloak">
+  <div>
+    <div class="go-under">
+      <ul class="lists">
+        <li class="task-header list odd">
+          <div class="image invisible" style="background-image: url({{List.Picture}});"></div>
+          <div class="label short">
+            <div class="name truncate invisible">{{List.Name | truncate}}</div>
+          </div>
+        </li>
+        <li class="task-header list summary">
+          <p class="truncate invisible">
+            {{List.Items.length}} <span data-ng-pluralize data-count="List.Items.length" data-when="{'one': 'item', 'other': 'items'}"></span>
+          </p>
+          <p class="truncate invisible">
+            {{OutstandingTotal}} outstanding
+          </p>
+          <p class="truncate invisible">
+            {{HighPriorityTotal}} important
+          </p>
+          <p class="truncate invisible">
+            <span data-ng-show="TotalPrice != null">Total: {{TotalPrice | monetize}}</span>
+          </p>
+        </li>
+      </ul>
+    </div>
+
+
+    <div class="go-over invisible">
+      <ul class="items products">
+        <li class="quick-form">
+          <form name="NewQuickProductForm" data-ng-submit="AddQuickProduct()">
+            <input type="text" data-ng-model="QuickName" placeholder="Add an item..." required class="control silver full-width" />
+            <button type="submit" class="visuallyhidden"></button>
+            <!--To allow forms to submit on enter-->
+          </form>
+        </li>
+        <li id="task_{{product.Id}}" data-ng-repeat="product in List.Items" class="task control" data-ng-sort-index="{{$index}}" data-ng-class="{lightred: product.Priority == '1', gold: product.Priority == '2', silver: product.Priority == '3', complete: product.Complete}" data-ng-class-odd="'odd'" data-ng-class-even="'even'">
+          <div data-on-tap="ToggleComplete(product)" class="checkbox">
+            <div class="iconic check"></div>
+          </div>
+          <div class="quantity truncate" data-on-tap="OpenEditItem(product)">
+            <span>{{product.Quantity}} x</span>
+          </div>
+          <div class="name" data-on-tap="OpenEditItem(product)">
+            <span>{{product.Name}}</span>
+          </div>
+          <div class="price truncate" data-on-tap="OpenEditItem(product)">
+            <span>{{product.Price | monetize}}</span>
+          </div>
+          <div class="handle">::</div>
+        </li>
+      </ul>
+      <div class="bottom-controls">
+        <button type="button" class="clear control blue" data-on-tap="ClearCompleted()" data-ng-class="{enabled: CompletedTotal > 0}">Clear ({{CompletedTotal}})</button>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+
+
+    <div class="modal" id="edit-shopping-item" data-on-swipe="CloseModal()">
+      <div class="noise">
+        <form name="EditProductForm" data-ng-submit="UpdateItem()">
+
+          <div class="modal-header">
+            <h3>Edit Product</h3>
+          </div>
+
+          <div class="modal-body">
+            <div>
+              <input type="text" data-ng-model="EditingItem.Name" required class="full-width" />
+            </div>
+            <div>
+              <label>Price</label>
+              <input type="number" min="0" step="0.01" data-ng-model="EditingItem.Price" class="pull-right" />
+            </div>
+            <div>
+              <label>Quantity</label>
+              <input type="number" min="1" step="any" data-ng-model="EditingItem.Quantity" class="pull-right" />
+            </div>
+            <div class="priority">
+              <button type="button" class="control black low" data-ng-class="{selected: EditingItem.Priority == '3'}" data-on-tap="EditingItem.Priority = 3">Low</button>
+              <button type="button" class="control black normal" data-ng-class="{selected: EditingItem.Priority == '2'}" data-on-tap="EditingItem.Priority = 2">Normal</button>
+              <button type="button" class="control black high" data-ng-class="{selected: EditingItem.Priority == '1'}" data-on-tap="EditingItem.Priority = 1">High</button>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" data-on-tap="UpdateItem()" class="control blue save one-half-wide">Save</button>
+            <button type="button" data-on-tap="DeleteItem()" class="control black delete one-half-wide">Delete</button>
+          </div>
+          <button type="submit" class="visuallyhidden"></button>
+          <!--To allow forms to submit on enter-->
+        </form>
+      </div>
+      <div class="wait"></div>
+    </div>
+
+    <div class="modal" id="email-list" data-on-swipe="CloseModal()">
+      <div class="noise">
+        <form name="EmailListForm" data-ng-submit="SendEmail()">
+
+          <div class="modal-header">
+            <h3>Send List</h3>
+          </div>
+
+          <div class="modal-body">
+            <div>
+              <input type="email" data-ng-model="To" required class="full-width" placeholder="name@email.com" />
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" data-on-tap="SendEmail()" class="control blue save">Send email</button>
+          </div>
+          <button type="submit" class="visuallyhidden"></button>
+          <!--To allow forms to submit on enter-->
+        </form>
+      </div>
+      <div class="wait"></div>
+    </div>
+
+
+  </div>
+</div>

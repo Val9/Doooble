@@ -1,0 +1,64 @@
+@media all and (min-width: 479px) {
+
+  .go-over {
+    margin-top: 33%;
+  }
+
+  .modal-header {
+    display: none;
+  }
+
+  .modal-body {
+    margin-top: 1%;
+  }
+
+    .modal-body label {
+      top: 15px;
+    }
+
+    .modal-body input {
+      position: relative;
+      left: 5%;
+      float: left;
+      margin-top: 5px;
+      width: 40%;
+    }
+
+    .modal-body textarea {
+      height: 150px;
+    }
+
+    .modal-body .preview {
+      width: 29%;
+      margin-top: 5px;
+    }
+
+  .getting-started:before {
+    right: 3%;
+  }
+
+  .list {
+    width: 30.5%;
+  }
+
+    .list.odd .label,
+    .list.even .label {
+      left: 0;
+      padding: 0;
+      -webkit-box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.4);
+      box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.4);
+    }
+
+      .list.odd .label:before,
+      .list.even .label:before {
+        display: none;
+      }
+
+  .summary {
+    margin: 1% 0% 1% 2%;
+  }
+
+    .summary p {
+      margin: 4% 8% 0% 8%;
+    }
+}

@@ -1,0 +1,8 @@
+@media all and (min-width: 1023px) {
+
+  .go-over {
+    left: 305px;
+    max-width: 710px;
+    width: 68%;
+  }
+}
