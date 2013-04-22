@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="format-detection" content="telephone=no">
 
   <title>Doooble</title>
 
@@ -26,12 +27,12 @@
     <div class="complete see-through">
 
       <header id="header" class="control blue" data-ng-controller="MenuController" data-ng-cloak="ng-cloak">
-        <button data-on-tap="OpenAccountSettings()" data-ng-show="!Syncing && location.path() == '/' && !ModalOpen" class="transparent pull-left iconic user"></button>
+        <button data-on-tap="OpenAccountSettings()" data-ng-show="location.path() == '/' && !ModalOpen" class="transparent pull-left iconic user"></button>
         <button data-on-tap="Back()" data-ng-show="location.path() != '/' && !ModalOpen" class="transparent pull-left iconic arrow_left"></button>
-        <button data-ng-show="Syncing" class="transparent pull-left iconic reload rotating"></button>
+        <button data-on-tap="OpenSearch()" data-ng-show="location.path() == '/' && !ModalOpen" class="transparent pull-right iconic magnifying_glass"></button>
         <button data-on-tap="CloseModal()" data-ng-show="ModalOpen" class="transparent pull-right iconic x"></button>
-        <button data-on-tap="OpenEmailList()" data-ng-show="location.path() != '/' && !ModalOpen" class="transparent pull-right iconic mail"></button>
-        <h1 data-ng-bind="Title"></h1>
+        <button data-on-tap="OpenEmailList()" data-ng-show="location.path() != '/' && location.path() != '/search' && !ModalOpen" class="transparent pull-right iconic mail"></button>
+        <h1 data-ng-class="{title: Title == 'Doooble'}" data-ng-bind="Title"></h1>
       </header>
 
       <div id="views" data-ng-view="ng-view"></div>
@@ -104,7 +105,7 @@
   </div>
 
   <script src="cordova.ios.js"></script>
-    
+
   <!-- Vendor provided libraries -->
   <script src="scripts/vendor/jquery.min.js"></script>
   <script src="scripts/vendor/jquery-ui.min.js"></script>
@@ -141,8 +142,9 @@
   <script src="scripts/app/controllers/list.js"></script>
   <script src="scripts/app/controllers/task.js"></script>
   <script src="scripts/app/controllers/note.js"></script>
+  <script src="scripts/app/controllers/search.js"></script>
 
   <!-- Let's get going! -->
-  <script>app.initialize();app.deviceready();</script>
+  <script>app.initialize(); app.deviceready();</script>
 </body>
 </html>

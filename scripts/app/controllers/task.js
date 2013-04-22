@@ -307,11 +307,15 @@ function TaskController($rootScope, $scope, $compile, $routeParams, $filter, fil
     items: '.task',
     forcePlaceholderSize: true,
     handle: '.handle',
-    revert: 200,
+    revert: 400,
     start: function (e, ui) {
+      ui.item.addClass('sorting');
+      
       $('.droparea').css({ 'height': ui.item.outerHeight() + 'px' });
     },
     stop: function (e, ui) {
+      ui.item.removeClass('sorting');
+
       $scope.$apply(function () {
         var itemIds = $('.items').sortable('toArray');
         for (var i in itemIds) {

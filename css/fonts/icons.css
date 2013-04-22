@@ -1,12 +1,17 @@
 /*
+ *  LOBSTER
+ */
+@font-face {
+  font-family: 'Lobster';
+  src: url('lobster.woff') format('woff');
+}
+
+/*
  *  UBUNTU
  */
 @font-face {
   font-family: 'Ubuntu';
-  src: url('ubuntul.eot');
-  src: url('ubuntul.eot?#iefix') format('embedded-opentype'), url('ubuntul.woff') format('woff'), url('ubuntul.ttf') format('truetype'), url('ubuntul.svg#ubuntul') format('svg');
-  font-weight: normal;
-  font-style: normal;
+  src: url('ubuntul.woff') format('woff');
 }
 
 /*
@@ -14,10 +19,7 @@
  */
 @font-face {
   font-family: 'blokletters';
-  src: url('blokletters.eot');
-  src: url('blokletters.eot?#iefix') format('embedded-opentype'), url('blokletters.woff') format('woff'), url('blokletters.ttf') format('truetype'), url('blokletters.svg#blokletters') format('svg');
-  font-weight: normal;
-  font-style: normal;
+  src: url('blokletters.woff') format('woff');
 }
 
 /*
@@ -26,10 +28,7 @@
 
 @font-face {
   font-family: 'Iconic';
-  src: url('iconic_fill.eot');
-  src: url('iconic_fill.eot?#iefix') format('embedded-opentype'), url('iconic_fill.ttf') format('truetype'), url('iconic_fill.svg#iconic') format('svg');
-  font-weight: normal;
-  font-style: normal;
+  src: url('iconic_fill.woff') format('woff');
 }
 
 .iconic {

@@ -43,7 +43,6 @@ hr {
 
 /* Common gradients for buttons and controls */
 .control {
-  font-size: 16px;
   border: 1px solid #cccccc;
   border-color: #222 #222 #000000;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
@@ -51,6 +50,7 @@ hr {
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
   color: #fff;
+  font-size: 16px;
 }
 
 button.control:active {
@@ -153,7 +153,7 @@ button.control:active {
 }
 
 .hidden {
-  display: none
+  display: none;
 }
 
 .noise {
@@ -199,10 +199,16 @@ header {
     /* Rest margins set by normalize.css */
   }
 
+  header h1.title {
+    font-family: 'Lobster', cursive;
+    font-size: 32px;
+    margin-top: -8px;
+  }
+
   header button {
     position: relative;
     top: 10%;
-    width: 35px;
+    width: 50px;
     height: 85%;
     color: #fff;
     -webkit-text-shadow: 0px 1px 1px #000;
@@ -218,13 +224,17 @@ header {
   header .pull-right {
     right: 2%;
     float: right;
+    text-align: right;
+    padding-right: 2%;
   }
 
   header .pull-left {
     left: 2%;
     float: left;
+    text-align: left;
+    padding-left: 2%;
   }
-
+  
 .main {
   position: relative;
   top: 40px;
@@ -256,12 +266,12 @@ ul {
   box-shadow: 0px -4px 4px -2px #222;
 }
 
-.go-over.top {
-  left: 0;
-  margin-top: -40px;
-  width: 95%;
-  max-width: 100%;
-}
+  .go-over.top {
+    left: 0;
+    margin-top: -40px;
+    max-width: 100%;
+    width: 95%;
+  }
 
 .home {
   padding: 10px 0px 0 2%;
@@ -283,23 +293,23 @@ ul {
 .bottom-controls {
   position: fixed;
   bottom: 0px;
-  width: 100%;
-  padding: 0;
-  margin: 0;
   left: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
 
-.bottom-controls button {
-  display: inline;
-  padding: 10px 0;
-  vertical-align: middle;
-  text-align: center;
-  font-size: 16px;
-  line-height: 20px;
-  cursor: pointer;
-  float: right;
-  width: 100%;
-}
+  .bottom-controls button {
+    display: inline;
+    float: right;
+    padding: 10px 0;
+    width: 100%;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 16px;
+    line-height: 20px;
+    cursor: pointer;
+  }
 
 button.clear {
   position: relative;
@@ -385,10 +395,10 @@ button.clear {
     padding: 10px;
     width: 100%;
     color: #fff;
-    line-height: 20px;
     text-align: center;
     -webkit-text-shadow: 0px 1px 1px #000;
     text-shadow: 0px 1px 1px #000;
+    line-height: 20px;
   }
 
     .modal button:active {
@@ -397,18 +407,19 @@ button.clear {
       text-shadow: 0px 0px 15px #fff;
     }
 
-  .modal button.fat {
-    font-size: 30px;
-  }
+    .modal button.fat {
+      font-size: 30px;
+    }
 
-  .modal button.one-quarter-high {
-    height: 25%;
-  }
+    .modal button.one-quarter-high {
+      height: 25%;
+    }
 
-  .modal button.one-half-wide,
-  button.one-half-wide {
-    width: 50%;
-  }
+    .modal button.one-half-wide,
+    button.one-half-wide {
+      width: 50%;
+    }
+
   .modal .dark {
     background: rgba(0,0,0,0.1);
   }
@@ -716,16 +727,25 @@ button.clear {
   list-style: none;
   font-size: 18px;
   cursor: pointer;
-  -moz-transition: opacity 0.4s linear;
-  -o-transition: opacity 0.4s linear;
-  -webkit-transition: opacity 0.4s linear;
-  transition: opacity 0.4s linear;
+  -webkit-box-shadow: 0px 0px 0px #333;
+  box-shadow: 0px 0px 0px #333;
+  -moz-transition: opacity 0.4s linear, box-shadow 0.4s linear;
+  -o-transition: opacity 0.4s linear, box-shadow 0.4s linear;
+  -webkit-transition: opacity 0.4s linear, box-shadow 0.4s linear;
+  transition: opacity 0.4s linear, box-shadow 0.4s linear;
+}
+
+.task.sorting {
+  -webkit-box-shadow: 0px 0px 15px #333;
+  box-shadow: 0px 0px 15px #333;
 }
 
 li.droparea {
-  margin: 2% 1%;
-  border: 1px dashed #345b79;
-  background: #fff;
+  margin: 2% 0% 2% 1%;
+  background: rgba(0,0,0,0.1);
+  -webkit-box-shadow: 0px 1px 2px 1px #555 inset;
+  box-shadow: 0px 1px 2px 1px #555 inset;
+  border-radius: 6px;
 }
 
 .task .name span,
@@ -811,25 +831,33 @@ li.droparea {
 }
 
 .products .task .name {
-  margin-left: 0;
-  width: 42%;
+  margin-left: 25%;
+  width: 50%;
 }
 
 .wishes .task .price,
 .products .task .price {
-  margin-top: 5px;
-  width: 25%;
-  vertical-align: top;
-  text-align: right;
+  top: 50%;
+  right: 10%;
+  width: 15%;
   font-size: 12px;
+  display: inline-block;
+  height: 14px;
+  text-align: right;
+  position: absolute;
+  margin-top: -8px;
 }
 
 .products .task .quantity {
-  margin-top: 5px;
-  margin-left: 12%;
-  width: 10%;
-  vertical-align: top;
+  top: 50%;
+  left: 12%;
   font-size: 12px;
+  display: inline-block;
+  height: 14px;
+  text-align: left;
+  position: absolute;
+  margin-top: -8px;
+  width: 14%;
 }
 
 .task.silver {
@@ -1152,67 +1180,6 @@ li.droparea {
     margin: 30px auto;
   }
 
-@-webkit-keyframes rotating {
-  from {
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-
-  to {
-    -moz-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-@-moz-keyframes rotating {
-  from {
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-
-  to {
-    -moz-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes rotating {
-  from {
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-
-  to {
-    -moz-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-.rotating {
-  -moz-animation: rotating 1s linear infinite;
-  -o-animation: rotating 1s linear infinite;
-  -webkit-animation: rotating 1s linear infinite;
-  animation: rotating 1s linear infinite;
-}
-
 .quick-form {
   position: relative;
   overflow: hidden;
@@ -1222,16 +1189,22 @@ li.droparea {
 }
 
   .quick-form input {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     padding: 4% 3%;
     width: 100%;
-    -webkit-border-radius: 6px;
-    border-radius: 6px;
     border: 1px solid #fff;
+    -webkit-border-radius: 6px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border-radius: 6px;
     background: #fff;
     -webkit-box-shadow: 0px 1px 2px 1px #555 inset;
     box-shadow: 0px 1px 2px 1px #555 inset;
     font-size: 18px;
   }
+
+/* PRELOAD IMAGES */
+body:after {
+  display: none;
+  content: url(../img/lists/task.jpg) url(../img/lists/wish.jpg) url(../img/lists/shopping.jpg) url(../img/lists/note.jpg);
+}

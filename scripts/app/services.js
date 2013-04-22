@@ -2,34 +2,6 @@
 
 angular.module('Doooble.services', ['ngResource'])
 
-              .config(function ($httpProvider) {
-                $httpProvider.responseInterceptors.push('AjaxInterceptor');
-                var spinnerFunction = function (data, headersGetter) {
-                  // Ajax call started
-                  return data;
-                };
-                $httpProvider.defaults.transformRequest.push(spinnerFunction);
-              })
-
-              // Register the interceptor as a service, intercepts ALL angular ajax http calls
-              .factory('AjaxInterceptor', function ($q, $window, $rootScope) {
-                return function (promise) {
-                  $rootScope.Syncing = true;
-                  $("#account-settings :input").attr("disabled", "disabled");
-                  return promise.then(function (response) {
-                    // Success
-                    $rootScope.Syncing = false;
-                    $("#account-settings :input").removeAttr("disabled");
-                    return response;
-                  }, function (response) {
-                    // Error
-                    $rootScope.Syncing = false;
-                    $("#account-settings :input").removeAttr("disabled");
-                    return $q.reject(response);
-                  }
-                )
-                };
-              })
               .factory('Utils', function () {
                 return {
 
@@ -45,8 +17,8 @@ angular.module('Doooble.services', ['ngResource'])
               }).
               factory('User', function ($resource) {
 
-                var resourceUrl = 'your url here';
-                var key = 'your api key here';
+                var resourceUrl = 'your api uri';
+                var key = 'your api key';
 
                 var User = $resource(resourceUrl,
                   { apiKey: key }, {
@@ -84,14 +56,14 @@ angular.module('Doooble.services', ['ngResource'])
               }).
               factory('Email', function ($resource) {
 
-                var resourceUrl = 'your url here';
+                var resourceUrl = 'https://sendgrid.com/api/mail.send.json';
                 var html = '';
                 var subject = '';
                 var to = '';
-                var from = 'no-reply@yourdomain.com';
+                var from = 'no-reply@your-domain.com';
                 var fromname = 'Your name';
-                var api_user = 'your api user name here';
-                var api_key = 'your api key here';
+                var api_user = 'your user name';
+                var api_key = 'your api key';
 
                 var Email = $resource(resourceUrl,
                 {

@@ -7,7 +7,7 @@ function MenuController($rootScope, $scope, $location, Local) {
   $scope.location = $location;
 
   // Set App Title
-  $rootScope.Title = 'doooble';
+  $rootScope.Title = 'Doooble';
 
   // Account settings
   // ----------------
@@ -25,6 +25,13 @@ function MenuController($rootScope, $scope, $location, Local) {
     $rootScope.ModalOpen = true;
   };
 
+  // Search
+  // ------
+  $scope.OpenSearch = function() {
+    $scope.CloseModal();
+    $location.path('/search');
+    $rootScope.Title = 'Search';
+  };
 
   $scope.OpenEmailList = function () {
     $rootScope.$broadcast('OpenEmailList');
@@ -60,7 +67,7 @@ function MenuController($rootScope, $scope, $location, Local) {
   $scope.Back = function () {
     $scope.CloseModal();
     $location.path('/');
-    $rootScope.Title = 'doooble';
+    $rootScope.Title = 'Doooble';
   };
 
 

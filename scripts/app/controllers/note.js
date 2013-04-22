@@ -128,13 +128,13 @@ function NoteController($rootScope, $scope, $routeParams, $filter, User, Local, 
       if (navigator.notification != null) {
         navigator.notification.vibrate(200);
         navigator.notification.alert(
-            'You have no tasks to send',    // message
+            'You have no notes to send',    // message
             null,         // callback
             'Doooble',    // title
             'Ok'          // button text
         );
       } else {
-        alert('You have no tasks to send');
+        alert('You have no notes to send');
       }
     }
   };

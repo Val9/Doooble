@@ -30,11 +30,19 @@ function ListController($rootScope, $scope, $location, $filter, User, Utils) {
   };
 
   $scope.AddList = function (type) {
-    if ($scope.ListName != null && $scope.ListName.length > 0) {
-      var list = new List(Utils.newGuid(), type, $scope.ListName, $rootScope.User.Lists.length, $scope.Picture, [], false, false);
-      $rootScope.User.Lists.push(list);
-      $rootScope.User.DateModified = new Date();
+    if ($scope.ListName == null || $scope.ListName.length == 0) {
+      switch (type) {
+        case 'task': $scope.ListName = 'Reminders'; break;
+        case 'wish': $scope.ListName = 'Presents'; break;
+        case 'shopping': $scope.ListName = 'Shopping'; break;
+        case 'note': $scope.ListName = 'Notes'; break;
+        default: $scope.ListName = 'My list'; break;
+      }
     }
+
+    var list = new List(Utils.newGuid(), type, $scope.ListName, $rootScope.User.Lists.length, $scope.Picture, [], false, false);
+    $rootScope.User.Lists.push(list);
+    $rootScope.User.DateModified = new Date();
   };
 
   $scope.$on('OpenAddTaskList', function () {
@@ -64,11 +72,19 @@ function ListController($rootScope, $scope, $location, $filter, User, Utils) {
 
 
   $scope.UpdateList = function () {
-    if ($scope.EditingList.Name != null && $scope.EditingList.Name.length > 0) {
-      $scope.OriginalList.Name = $scope.EditingList.Name;
-      $scope.OriginalList.Picture = $scope.EditingList.Picture;
-      $rootScope.User.DateModified = new Date();
+    if ($scope.EditingList.Name == null || $scope.EditingList.Name.length == 0) {
+      switch (type) {
+        case 'task': $scope.EditingList.Name = 'Reminders'; break;
+        case 'wish': $scope.EditingList.Name = 'Presents'; break;
+        case 'shopping': $scope.EditingList.Name = 'Shopping'; break;
+        case 'note': $scope.EditingList.Name = 'Notes'; break;
+        default: $scope.EditingList.Name = 'My list'; break;
+      }
     }
+
+    $scope.OriginalList.Name = $scope.EditingList.Name;
+    $scope.OriginalList.Picture = $scope.EditingList.Picture;
+    $rootScope.User.DateModified = new Date();
   };
 
 

@@ -1,4 +1,4 @@
-﻿<div class="main" role="main" data-ng-cloak="ng-cloak">
+<div class="main" role="main" data-ng-cloak="ng-cloak">
   <div>
     <div class="go-under">
       <ul class="lists">
@@ -39,14 +39,14 @@
           <div data-on-tap="ToggleComplete(product)" class="checkbox">
             <div class="iconic check"></div>
           </div>
-          <div class="quantity truncate" data-on-tap="OpenEditItem(product)">
-            <span>{{product.Quantity}} x</span>
+          <div class="quantity" data-on-tap="OpenEditItem(product)">
+            <span class="truncate">{{product.Quantity}} x</span>
           </div>
           <div class="name" data-on-tap="OpenEditItem(product)">
             <span>{{product.Name}}</span>
           </div>
           <div class="price truncate" data-on-tap="OpenEditItem(product)">
-            <span>{{product.Price | monetize}}</span>
+            <span class="truncate">{{product.Price | monetize}}</span>
           </div>
           <div class="handle">::</div>
         </li>

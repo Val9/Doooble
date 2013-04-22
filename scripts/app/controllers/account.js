@@ -58,13 +58,13 @@ function AccountController($rootScope, $scope, $location, $route, User, Local, U
       if (navigator.onLine && $rootScope.User.PIN != null && $rootScope.User.PIN.length > 0) {
         $rootScope.User.update();
         Local.save($rootScope.User);
-        $scope.UpdateNotifications();
+        try { $scope.UpdateNotifications(); } catch (e) { console.log(e.message); }
       } else {
         throw 'No resource or not online';
       }
     } catch (e) {
       Local.save($rootScope.User);
-      $scope.UpdateNotifications();
+      try { $scope.UpdateNotifications(); } catch (e) { console.log(e.message); }
     }
     $rootScope.$broadcast('CloseModal');
   }, true);
