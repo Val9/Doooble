@@ -22,8 +22,8 @@ function TaskController($rootScope, $scope, $compile, $routeParams, $filter, fil
   $scope.Today = $filter('date')(today, 'yyyy-MM-dd');
   $scope.Tomorrow = $filter('date')(tomorrow, 'yyyy-MM-dd');
 
-  var hours = today.getHours()
-  var minutes = today.getMinutes()
+  var hours = today.getHours();
+  var minutes = today.getMinutes();
 
   if (minutes < 10) minutes = "0" + minutes;
   if (hours < 10) hours = "0" + hours;
@@ -161,7 +161,7 @@ function TaskController($rootScope, $scope, $compile, $routeParams, $filter, fil
 
 
   $scope.FocusQuickTask = function () {
-    $('.quick-form input').focus();
+    $('.in-list-form input').focus();
   };
 
 
@@ -174,7 +174,7 @@ function TaskController($rootScope, $scope, $compile, $routeParams, $filter, fil
   // --------------
   $scope.OpenEditItem = function (item) {
 
-    $('.quick-form input').blur();
+    $('.in-list-form input').blur();
 
     // Store the item being edited. This will be used in the update method.
     switch ($scope.List.Type) {
@@ -202,7 +202,7 @@ function TaskController($rootScope, $scope, $compile, $routeParams, $filter, fil
   $scope.UpdateItem = function () {
     if ($scope.EditingItem.Name != null && $scope.EditingItem.Name.length > 0) {
       if ($scope.EditingItem.DueDate == null || $scope.EditingItem.DueDate.length == 0) {
-        $scope.EditingItem.DueDate == null
+        $scope.EditingItem.DueDate == null;
         $scope.EditingItem.DueTime = null;
       }
 
@@ -310,7 +310,7 @@ function TaskController($rootScope, $scope, $compile, $routeParams, $filter, fil
     revert: 400,
     start: function (e, ui) {
       ui.item.addClass('sorting');
-      
+
       $('.droparea').css({ 'height': ui.item.outerHeight() + 'px' });
     },
     stop: function (e, ui) {
@@ -421,7 +421,7 @@ function TaskController($rootScope, $scope, $compile, $routeParams, $filter, fil
     } else {
       alert('Email sent');
     }
-    $rootScope.$broadcast('CloseModal');
+    $rootScope.CloseModal();
   };
 
 

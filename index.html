@@ -1,102 +1,93 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  <meta name="format-detection" content="telephone=no">
+  <meta name="format-detection" content="telephone=no" />
 
   <title>Doooble</title>
 
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/defaults.css">
-  <link rel="stylesheet" href="css/fonts/icons.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/480.css">
-  <link rel="stylesheet" href="css/768.css">
-  <link rel="stylesheet" href="css/1024.css">
-  <link rel="stylesheet" href="css/1100.css">
-
-  <script src="scripts/vendor/modernizr-2.6.2.min.js"></script>
+  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/defaults.css" />
+  <link rel="stylesheet" href="css/fonts/icons.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/480.css" />
+  <link rel="stylesheet" href="css/768.css" />
 </head>
-<body id="body" data-ng-app="Doooble">
+<body id="body" data-ng-app="Doooble" data-ng-cloak="ng-cloak">
   <div id="deviceready">
 
     <div class="complete see-through">
 
-      <header id="header" class="control blue" data-ng-controller="MenuController" data-ng-cloak="ng-cloak">
+      <header id="header" data-ng-controller="MenuController">
         <button data-on-tap="OpenAccountSettings()" data-ng-show="location.path() == '/' && !ModalOpen" class="transparent pull-left iconic user"></button>
         <button data-on-tap="Back()" data-ng-show="location.path() != '/' && !ModalOpen" class="transparent pull-left iconic arrow_left"></button>
         <button data-on-tap="OpenSearch()" data-ng-show="location.path() == '/' && !ModalOpen" class="transparent pull-right iconic magnifying_glass"></button>
         <button data-on-tap="CloseModal()" data-ng-show="ModalOpen" class="transparent pull-right iconic x"></button>
-        <button data-on-tap="OpenEmailList()" data-ng-show="location.path() != '/' && location.path() != '/search' && !ModalOpen" class="transparent pull-right iconic mail"></button>
+        <button data-on-tap="OpenEmailList()" data-ng-show="location.path() != '/' && location.path().indexOf('/search') == -1 && !ModalOpen" class="transparent pull-right iconic mail"></button>
         <h1 data-ng-class="{title: Title == 'Doooble'}" data-ng-bind="Title"></h1>
       </header>
 
       <div id="views" data-ng-view="ng-view"></div>
 
       <div class="modal left" id="account-settings" data-ng-controller="AccountController" data-on-swipe="CloseModal()">
-        <div class="noise">
-          <form name="AccountSettings" data-ng-submit="Sync()">
+        <form name="AccountSettings" data-ng-submit="Sync()">
 
-            <div class="modal-header">
-              <h3>Sync</h3>
-            </div>
+          <div class="modal-header">
+            <h3>Sync</h3>
+          </div>
 
-            <div id="register">
-              <div class="modal-body">
-                <div class="instructions" data-ng-show="User.PIN == null">
-                  Register your account
-                </div>
-                <div class="sync-password">
-                  <input type="password" data-ng-show="User.Password == null" data-ng-model="Password" class="full-width" required placeholder="Password" />
-                </div>
-                <div class="sync-pin" data-ng-show="User.PIN != null">
-                  <span>{{ User.PIN.charAt(0) }}</span>
-                  <span>{{ User.PIN.charAt(1) }}</span>
-                  <span>{{ User.PIN.charAt(2) }}</span>
-                  <span>{{ User.PIN.charAt(3) }}</span>
-                  <div class="instructions">
-                    <p>Use your password &amp; this pin to sync</p>
-                  </div>
-                </div>
+          <div id="register">
+            <div class="modal-body">
+              <div class="instructions" data-ng-show="User.PIN == null">
+                Register your account
+              </div>
+              <div class="sync-password">
+                <input type="password" data-ng-show="User.Password == null" data-ng-model="Password" class="full-width" required placeholder="Password" />
+              </div>
+              <div class="sync-pin" data-ng-show="User.PIN != null">
+                <span>{{ User.PIN.charAt(0) }}</span>
+                <span>{{ User.PIN.charAt(1) }}</span>
+                <span>{{ User.PIN.charAt(2) }}</span>
+                <span>{{ User.PIN.charAt(3) }}</span>
                 <div class="instructions">
-                  <button type="button" data-on-tap="UnSync()" data-ng-show="User.Password != null" class="control black">Unsync device</button>
-                  <button type="button" data-on-tap="Register()" data-ng-show="User.Password == null" class="control black">Register</button>
-                </div>
-                <div class="instructions" data-ng-show="User.Password == null">
-                  <hr />
-                  Already have a pin?
-                  <button type="button" data-on-tap="ToggleSyncSettings()" class="control black">Sync to an existing account</button>
+                  <p>Use your password &amp; this pin to sync</p>
                 </div>
               </div>
-            </div>
-
-            <div id="sync">
-              <div class="modal-body">
-                <div>
-                  <input type="text" data-ng-model="NewPin" class="pin full-width" required placeholder="PIN" />
-                </div>
-                <div>
-                  <input type="password" data-ng-model="NewPassword" class="full-width" required placeholder="Password" />
-                </div>
-                <div class="instructions">
-                  <button type="button" data-on-tap="Sync()" class="control black">Sync</button>
-                  <hr />
-                </div>
-                <div class="instructions" data-ng-show="User.Password == null">
-                  <button type="button" data-on-tap="ToggleSyncSettings()" class="control black">Register your account</button>
-                </div>
-                <div class="instructions" data-ng-show="User.Password != null">
-                  <button type="button" data-on-tap="ToggleSyncSettings()" class="control black">View account details</button>
-                </div>
+              <div class="instructions">
+                <button type="button" data-on-tap="UnSync()" data-ng-show="User.Password != null" class="control">Unsync device</button>
+                <button type="button" data-on-tap="Register()" data-ng-show="User.Password == null" class="control">Register</button>
+              </div>
+              <div class="instructions" data-ng-show="User.Password == null">
+                <button type="button" data-on-tap="ToggleSyncSettings()" class="control">Already have a PIN?</button>
               </div>
             </div>
+          </div>
 
-          </form>
-        </div>
+          <div id="sync">
+            <div class="modal-body">
+              <div>
+                <input type="text" data-ng-model="NewPin" class="pin full-width" required placeholder="PIN" />
+              </div>
+              <div>
+                <input type="password" data-ng-model="NewPassword" class="full-width" required placeholder="Password" />
+              </div>
+              <div class="instructions">
+                <button type="button" data-on-tap="Sync()" class="control">Sync</button>
+              </div>
+              <div class="instructions" data-ng-show="User.Password == null">
+                <button type="button" data-on-tap="ToggleSyncSettings()" class="control">Register your account</button>
+              </div>
+              <div class="instructions" data-ng-show="User.Password != null">
+                <button type="button" data-on-tap="ToggleSyncSettings()" class="control">View account details</button>
+              </div>
+            </div>
+          </div>
+
+        </form>
         <div class="wait"></div>
       </div>
 
@@ -107,18 +98,21 @@
   <script src="cordova.ios.js"></script>
 
   <!-- Vendor provided libraries -->
+  <!-- Frameworks -->
   <script src="scripts/vendor/jquery.min.js"></script>
-  <script src="scripts/vendor/jquery-ui.min.js"></script>
+  <script src="scripts/vendor/jquery.ui.min.js"></script>
   <script src="scripts/vendor/jquery.ui.touch-punch.min.js"></script>
-  <script src="scripts/vendor/hammer/hammer.js"></script>
-  <script src="scripts/vendor/hammer/jquery.hammer.js"></script>
+  <script src="scripts/vendor/jquery.hammer.min.js"></script>
   <script src="scripts/vendor/angular/angular.min.js"></script>
   <script src="scripts/vendor/angular/angular-resource.min.js"></script>
   <script src="scripts/vendor/angular/angular-sanitize.min.js"></script>
-  <script src="scripts/vendor/marked.js"></script>
+  <!-- Utils -->
+  <script src="scripts/vendor/marked.min.js"></script>
+
+  <!-- Plugins -->
+  <script src="scripts/plugins/LocalNotification.js"></script>
 
   <!-- Custom scripts -->
-  <script src="scripts/plugins/LocalNotification.js"></script>
   <script src="scripts/plugins.js"></script>
   <script src="scripts/main.js"></script>
 

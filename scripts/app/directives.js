@@ -1,7 +1,10 @@
 'use strict';
 
-// hold tap doubletap transformstart transform transformend dragstart drag dragend release swipe
+//http://www.benlesh.com/2012/11/angular-js-directive-basics.html
+
 angular.module('Doooble.directives', [])
+
+  // hold tap doubletap transformstart transform transformend dragstart drag dragend release swipe
 
               .directive('onTouch', function () {
                 return function (scope, element, attrs) {
@@ -44,33 +47,4 @@ angular.module('Doooble.directives', [])
                   });
 
                 };
-              })
-              .directive('openCamera', function () {
-
-                return {
-                  restrict: 'A',
-                  require: 'ngModel',
-                  link: function (scope, elm, attrs, ctrl) {
-                    elm.on('touchstart', function () {
-                      navigator.camera.getPicture(
-                      function (imageURI) {
-                        scope.$apply(function () {
-                          ctrl.$setViewValue(imageURI);
-                        });
-                      },
-                      function (err) {
-                        console.log('Failed because: ' + err);
-                      },
-                      {
-                        quality: 75,
-                        allowEdit: true,
-                        destinationType: destinationType.FILE_URI,
-                        sourceType: pictureSource.PHOTOLIBRARY,
-                        targetWidth: 260,
-                        targetHeight: 260
-                      });
-                    });
-                  }
-                };
-
               });

@@ -184,7 +184,7 @@ function NoteController($rootScope, $scope, $routeParams, $filter, User, Local, 
     } else {
       alert('Email sent');
     }
-    $rootScope.$broadcast('CloseModal');
+    $rootScope.CloseModal();
   };
 
 

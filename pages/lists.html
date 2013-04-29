@@ -1,190 +1,147 @@
 ﻿<div class="main" role="main" data-ng-cloak="ng-cloak">
-  <div>
-    <div class="home">
-      <ul class="lists" data-ng-show="User.Lists.length > 0">
-        <li data-ng-repeat="list in User.Lists" class="list" data-ng-class-odd="'odd'" data-ng-class-even="'even'" data-on-tap="OpenList(list)" data-on-hold="OpenEditList(list)">
-          <div class="ribbon-wrapper" data-ng-show="list.Overdue == true">
-            <div class="ribbon">Overdue</div>
+  <div class="home">
+    <ul class="lists" data-ng-show="User.Lists.length > 0">
+      <li data-ng-repeat="list in User.Lists" class="list" data-ng-class-odd="'odd'" data-ng-class-even="'even'" data-on-tap="OpenList(list)" data-on-hold="OpenEditList(list)">
+        <div class="ribbon-wrapper" data-ng-show="list.Overdue == true">
+          <div class="ribbon">Overdue</div>
+        </div>
+        <div class="ribbon-wrapper" data-ng-show="list.DueToday == true && list.Overdue == false">
+          <div class="ribbon ribbon-blue">Today</div>
+        </div>
+        <img class="image" data-ng-src="{{list.Picture}}" src="img/go-under.jpg" alt="List image" />
+        <div class="label">
+          <div class="name truncate">{{list.Name}}</div>
+          <div class="total">
+            {{list.Items.length}}
+            <span data-ng-show="list.Type == 'task'" data-ng-pluralize data-count="list.Items.length" data-when="{'one': 'task', 'other': 'tasks'}"></span>
+            <span data-ng-show="list.Type == 'shopping'" data-ng-pluralize data-count="list.Items.length" data-when="{'one': 'item', 'other': 'items'}"></span>
+            <span data-ng-show="list.Type == 'wish'" data-ng-pluralize data-count="list.Items.length" data-when="{'one': 'wish', 'other': 'wishes'}"></span>
+            <span data-ng-show="list.Type == 'note'" data-ng-pluralize data-count="list.Items.length" data-when="{'one': 'note', 'other': 'notes'}"></span>
           </div>
-          <div class="ribbon-wrapper" data-ng-show="list.DueToday == true && list.Overdue == false">
-            <div class="ribbon ribbon-blue">Today</div>
-          </div>
-          <div class="image" style="background-image: url({{list.Picture}});"></div>
-          <div class="label">
-            <div class="name truncate">{{list.Name}}</div>
-            <div class="total">
-              {{list.Items.length}}
-              <span data-ng-show="list.Type == 'task'" data-ng-pluralize data-count="list.Items.length" data-when="{'one': 'task', 'other': 'tasks'}"></span>
-              <span data-ng-show="list.Type == 'shopping'" data-ng-pluralize data-count="list.Items.length" data-when="{'one': 'item', 'other': 'items'}"></span>
-              <span data-ng-show="list.Type == 'wish'" data-ng-pluralize data-count="list.Items.length" data-when="{'one': 'wish', 'other': 'wishes'}"></span>
-              <span data-ng-show="list.Type == 'note'" data-ng-pluralize data-count="list.Items.length" data-when="{'one': 'note', 'other': 'notes'}"></span>
-            </div>
-          </div>
-        </li>
-      </ul>
-      <div class="bottom-controls">
-        <button type="button" class="add-new control blue" data-on-tap="OpenListChooser()">Add list</button>
-      </div>
-
-      <div class="clearfix"></div>
-    </div>
-
-    <div class="modal" id="add-list-chooser" data-on-swipe="CloseModal()">
-      <div class="noise">
-        <button data-on-tap="OpenAddList('task')" class="transparent fat one-quarter-high">Tasks</button>
-        <button data-on-tap="OpenAddList('wish')" class="transparent fat one-quarter-high dark">Wishes</button>
-        <button data-on-tap="OpenAddList('shopping')" class="transparent fat one-quarter-high darker">Shopping</button>
-        <button data-on-tap="OpenAddList('note')" class="transparent fat one-quarter-high darkest">Notes</button>
-      </div>
-      <div class="wait"></div>
-    </div>
-
-    <div class="modal" id="new-task-list" data-on-swipe="CloseModal()">
-      <div class="noise">
-        <form name="NewTaskForm" data-ng-submit="AddList('task')">
-
-          <div class="modal-header">
-            <h3>New Task List</h3>
-          </div>
-
-          <div class="modal-body">
-            <div>
-              <input type="text" data-ng-model="ListName" placeholder="Reminders" />
-            </div>
-            <div class="preview">
-              <div class="image" data-open-camera data-ng-model='Picture' style="background-image: url({{Picture}});">
-                <!--<div class="iconic camera"></div>-->
-              </div>
-            </div>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" data-on-tap="AddList('task')" class="control blue save">Save</button>
-          </div>
-          <button type="submit" class="visuallyhidden"></button>
-          <!--To allow forms to submit on enter-->
-        </form>
-      </div>
-      <div class="wait"></div>
-    </div>
-
-    <div class="modal" id="new-wish-list" data-on-swipe="CloseModal()">
-      <div class="noise">
-        <form name="NewWishForm" data-ng-submit="AddList('wish')">
-
-          <div class="modal-header">
-            <h3>New Wish List</h3>
-          </div>
-
-          <div class="modal-body">
-            <div>
-              <input type="text" data-ng-model="ListName" placeholder="Presents" />
-            </div>
-            <div class="preview">
-              <div class="image" data-open-camera data-ng-model='Picture' style="background-image: url({{Picture}});">
-                <!--<div class="iconic camera"></div>-->
-              </div>
-            </div>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" data-on-tap="AddList('wish')" class="control blue save">Save</button>
-          </div>
-          <button type="submit" class="visuallyhidden"></button>
-          <!--To allow forms to submit on enter-->
-        </form>
-      </div>
-      <div class="wait"></div>
-    </div>
-
-    <div class="modal" id="new-shopping-list" data-on-swipe="CloseModal()">
-      <div class="noise">
-        <form name="NewShoppingForm" data-ng-submit="AddList('shopping')">
-
-          <div class="modal-header">
-            <h3>New Shopping List</h3>
-          </div>
-
-          <div class="modal-body">
-            <div>
-              <input type="text" data-ng-model="ListName" placeholder="Shopping"/>
-            </div>
-            <div class="preview">
-              <div class="image" data-open-camera data-ng-model='Picture' style="background-image: url({{Picture}});">
-                <!--<div class="iconic camera"></div>-->
-              </div>
-            </div>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" data-on-tap="AddList('shopping')" class="control blue save">Save</button>
-          </div>
-          <button type="submit" class="visuallyhidden"></button>
-          <!--To allow forms to submit on enter-->
-        </form>
-      </div>
-      <div class="wait"></div>
-    </div>
-
-    <div class="modal" id="new-note-list" data-on-swipe="CloseModal()">
-      <div class="noise">
-        <form name="NewNoteForm" data-ng-submit="AddList('note')">
-
-          <div class="modal-header">
-            <h3>New Note List</h3>
-          </div>
-
-          <div class="modal-body">
-            <div>
-              <input type="text" data-ng-model="ListName" placeholder="Notes"/>
-            </div>
-            <div class="preview">
-              <div class="image" data-open-camera data-ng-model='Picture' style="background-image: url({{Picture}});">
-                <!--<div class="iconic camera"></div>-->
-              </div>
-            </div>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" data-on-tap="AddList('note')" class="control blue save">Save</button>
-          </div>
-          <button type="submit" class="visuallyhidden"></button>
-          <!--To allow forms to submit on enter-->
-        </form>
-      </div>
-      <div class="wait"></div>
-    </div>
-
-
-    <div class="modal" id="edit-list" data-on-swipe="CloseModal()">
-      <div class="noise">
-        <form name="EditForm" data-ng-submit="UpdateList()">
-
-          <div class="modal-header">
-            <h3>Edit List</h3>
-          </div>
-
-          <div class="modal-body">
-            <div>
-              <input type="text" data-ng-model="EditingList.Name" />
-            </div>
-            <div class="preview">
-              <div class="image" data-open-camera data-ng-model='EditingList.Picture' style="background-image: url({{EditingList.Picture}});">
-                <!--<div class="iconic camera"></div>-->
-              </div>
-            </div>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" data-on-tap="UpdateList()" class="control blue save one-half-wide">Save</button>
-            <button type="button" data-on-tap="DeleteList()" class="control black delete one-half-wide">Delete</button>
-          </div>
-
-          <button type="submit" class="visuallyhidden"></button>
-          <!--To allow forms to submit on enter-->
-        </form>
-      </div>
-      <div class="wait"></div>
-    </div>
+        </div>
+      </li>
+    </ul>
+    <div class="clearfix"></div>
   </div>
+</div>
+
+<div class="modal" id="add-list-chooser" data-on-swipe="CloseModal()">
+  <button data-on-tap="OpenAddList('task')" class="transparent fat one-quarter-high">Tasks</button>
+  <button data-on-tap="OpenAddList('wish')" class="transparent fat one-quarter-high">Wishes</button>
+  <button data-on-tap="OpenAddList('shopping')" class="transparent fat one-quarter-high">Shopping</button>
+  <button data-on-tap="OpenAddList('note')" class="transparent fat one-quarter-high">Notes</button>
+  <div class="wait"></div>
+</div>
+
+<div class="modal" id="new-task-list" data-on-swipe="CloseModal()">
+  <form name="NewTaskForm" data-ng-submit="AddList('task')">
+
+    <div class="modal-body">
+      <div>
+        <input type="text" data-ng-model="ListName" placeholder="Reminders" />
+      </div>
+      <div class="preview">
+        <img class="image" data-ng-src="{{Picture}}" src="img/go-under.jpg" alt="List image" />
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" data-on-tap="AddList('task')" class="control blue save">Save</button>
+    </div>
+    <button type="submit" class="visuallyhidden"></button>
+    <!--To allow forms to submit on enter-->
+  </form>
+  <div class="wait"></div>
+</div>
+
+<div class="modal" id="new-wish-list" data-on-swipe="CloseModal()">
+  <form name="NewWishForm" data-ng-submit="AddList('wish')">
+
+    <div class="modal-body">
+      <div>
+        <input type="text" data-ng-model="ListName" placeholder="Presents" />
+      </div>
+      <div class="preview">
+        <img class="image" data-ng-src="{{Picture}}" src="img/go-under.jpg" alt="List image" />
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" data-on-tap="AddList('wish')" class="control blue save">Save</button>
+    </div>
+    <button type="submit" class="visuallyhidden"></button>
+    <!--To allow forms to submit on enter-->
+  </form>
+  <div class="wait"></div>
+</div>
+
+<div class="modal" id="new-shopping-list" data-on-swipe="CloseModal()">
+  <form name="NewShoppingForm" data-ng-submit="AddList('shopping')">
+
+    <div class="modal-body">
+      <div>
+        <input type="text" data-ng-model="ListName" placeholder="Shopping" />
+      </div>
+      <div class="preview">
+        <img class="image" data-ng-src="{{Picture}}" src="img/go-under.jpg" alt="List image" />
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" data-on-tap="AddList('shopping')" class="control blue save">Save</button>
+    </div>
+    <button type="submit" class="visuallyhidden"></button>
+    <!--To allow forms to submit on enter-->
+  </form>
+  <div class="wait"></div>
+</div>
+
+<div class="modal" id="new-note-list" data-on-swipe="CloseModal()">
+  <form name="NewNoteForm" data-ng-submit="AddList('note')">
+
+    <div class="modal-body">
+      <div>
+        <input type="text" data-ng-model="ListName" placeholder="Notes" />
+      </div>
+      <div class="preview">
+        <img class="image" data-ng-src="{{Picture}}" src="img/go-under.jpg" alt="List image" />
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" data-on-tap="AddList('note')" class="control blue save">Save</button>
+    </div>
+    <button type="submit" class="visuallyhidden"></button>
+    <!--To allow forms to submit on enter-->
+  </form>
+  <div class="wait"></div>
+</div>
+
+
+<div class="modal" id="edit-list" data-on-swipe="CloseModal()">
+  <form name="EditForm" data-ng-submit="UpdateList()">
+
+    <div class="modal-body">
+      <div>
+        <input type="text" data-ng-model="EditingList.Name" />
+      </div>
+      <div class="preview">
+        <img class="image" data-ng-src="{{EditingList.Picture}}" src="img/go-under.jpg" alt="List image" />
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" data-on-tap="UpdateList()" class="control blue save one-half-wide">Save</button>
+      <button type="button" data-on-tap="DeleteList()" class="control black delete one-half-wide">Delete</button>
+    </div>
+
+    <button type="submit" class="visuallyhidden"></button>
+    <!--To allow forms to submit on enter-->
+  </form>
+  <div class="wait"></div>
+</div>
+
+
+<div class="bottom-controls">
+  <button type="button" class="add-new control blue" data-on-tap="OpenListChooser()">Add list</button>
 </div>

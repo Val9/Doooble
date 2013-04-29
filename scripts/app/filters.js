@@ -44,4 +44,9 @@ angular.module('Doooble.filters', [])
                 return function (text) {
                   return marked(text);
                 }
+              })
+              .filter('hashtags', function () {
+                return function (text) {
+                  return hashed(text);
+                }
               });

@@ -1,121 +1,96 @@
 ﻿<div class="main" role="main" data-ng-cloak="ng-cloak">
-  <div>
-    <div class="go-under">
-      <ul class="lists">
-        <li class="task-header list odd">
-          <div class="image invisible" style="background-image: url({{List.Picture}});"></div>
-          <div class="label short">
-            <div class="name truncate invisible">{{List.Name | truncate}}</div>
-          </div>
-        </li>
-        <li class="task-header list summary">
-          <p class="truncate invisible">
-            {{List.Items.length}} <span data-ng-pluralize data-count="List.Items.length" data-when="{'one': 'task', 'other': 'tasks'}"></span>
-          </p>
-          <p class="truncate invisible">
-            {{OutstandingTotal}} outstanding
-          </p>
-          <p class="truncate invisible">
-            {{HighPriorityTotal}} important
-          </p>
-        </li>
-      </ul>
-    </div>
 
+  <ul class="items tasks">
+    <li class="in-list-form">
+      <form name="NewQuickTaskForm" data-ng-submit="AddQuickTask()">
+        <input type="text" data-ng-model="QuickName" placeholder="Add a task..." />
+        <button type="submit" class="visuallyhidden"></button>
+        <!--To allow forms to submit on enter-->
+      </form>
+    </li>
 
-    <div class="go-over invisible">
-      <ul class="items tasks">
-        <li class="quick-form">
-          <form name="NewQuickTaskForm" data-ng-submit="AddQuickTask()">
-            <input type="text" data-ng-model="QuickName" placeholder="Add a task..." required class="control silver full-width" />
-            <button type="submit" class="visuallyhidden"></button>
-            <!--To allow forms to submit on enter-->
-          </form>
-        </li>
-        <li id="task_{{task.Id}}" data-ng-repeat="task in List.Items" class="task control" data-ng-sort-index="{{$index}}" data-ng-class="{lightred: task.Priority == '1',  gold: task.Priority == '2', silver: task.Priority == '3', complete: task.Complete}" data-ng-class-odd="'odd'" data-ng-class-even="'even'">
-          <div data-on-tap="ToggleComplete(task)" class="checkbox">
-            <div class="iconic check"></div>
-          </div>
-          <div class="name" data-on-tap="OpenEditItem(task)">
-            <span>{{task.Name}}</span>
-            <div class="date" data-ng-show="task.DueDate != null && task.DueDate != ''" data-ng-class="{overdue: task.DueDate < Today || (task.DueDate == Today && (task.DueTime != null && task.DueTime != '' && task.DueTime < Now))}">
-              <span data-ng-show="task.DueDate == Yesterday">Yesterday {{task.DueTime}}</span>
-              <span data-ng-show="task.DueDate == Today">Today {{task.DueTime}}</span>
-              <span data-ng-show="task.DueDate == Tomorrow">Tomorrow {{task.DueTime}}</span>
-              <span data-ng-show="task.DueDate != Yesterday && task.DueDate != Today && task.DueDate != Tomorrow">{{task.DueDate | date:'EEE d MMMM'}} {{task.DueTime}}</span>
-            </div>
-          </div>
-          <div class="handle">::</div>
-        </li>
-      </ul>
-      <div class="bottom-controls">
-        <button type="button" class="clear control blue" data-on-tap="ClearCompleted()" data-ng-class="{enabled: CompletedTotal > 0}">Clear ({{CompletedTotal}})</button>
+    <li id="task_{{task.Id}}" data-ng-repeat="task in List.Items" class="task" data-ng-sort-index="{{$index}}" data-ng-class="{lightred: task.Priority == '1', silver: task.Priority == '3', done: task.Complete}">
+      <div data-on-tap="ToggleComplete(task)" class="checkbox">
+        <div class="iconic check"></div>
       </div>
+      <div class="name" data-on-tap="OpenEditItem(task)">
+        <span data-ng-bind-html-unsafe="task.Name | hashtags"></span>
+        <div class="date" data-ng-show="task.DueDate != null && task.DueDate != ''" data-ng-class="{overdue: task.DueDate < Today || (task.DueDate == Today && (task.DueTime != null && task.DueTime != '' && task.DueTime < Now))}">
+          <span data-ng-show="task.DueDate == Yesterday">Yesterday {{task.DueTime}}</span>
+          <span data-ng-show="task.DueDate == Today">Today {{task.DueTime}}</span>
+          <span data-ng-show="task.DueDate == Tomorrow">Tomorrow {{task.DueTime}}</span>
+          <span data-ng-show="task.DueDate != Yesterday && task.DueDate != Today && task.DueDate != Tomorrow">{{task.DueDate | date:'EEE d MMMM'}} {{task.DueTime}}</span>
+        </div>
+      </div>
+      <div class="handle">::</div>
+    </li>
+
+    <li class="summary" data-ng-show="List.Items.length > 0">
+      <p class="truncate">
+        <span>Tasks</span><span data-ng-bind="List.Items.length"></span>
+      </p>
+      <p class="truncate">
+        <span>To do</span><span data-ng-bind="OutstandingTotal"></span>
+      </p>
+      <p class="truncate">
+        <span>High</span><span data-ng-bind="HighPriorityTotal"></span>
+      </p>
       <div class="clearfix"></div>
-    </div>
+    </li>
+  </ul>
 
+</div>
+<div class="modal" id="edit-task-item" data-on-swipe="CloseModal()">
+  <form name="EditTaskForm" data-ng-submit="UpdateItem()">
 
-    <div class="modal" id="edit-task-item" data-on-swipe="CloseModal()">
-      <div class="noise">
-        <form name="EditTaskForm" data-ng-submit="UpdateItem()">
-
-          <div class="modal-header">
-            <h3>Edit Task</h3>
-          </div>
-
-          <div class="modal-body">
-            <div>
-              <input type="text" data-ng-model="EditingItem.Name" required class="full-width" />
-            </div>
-            <div>
-              <label>Due date</label>
-              <input type="date" data-ng-model="EditingItem.DueDate" class="control black opaque pull-right" />
-            </div>
-            <div>
-              <label>Time</label>
-              <input type="time" data-ng-model="EditingItem.DueTime" class="control black opaque pull-right" />
-            </div>
-            <div class="priority">
-              <button type="button" class="control black low" data-ng-class="{selected: EditingItem.Priority == '3'}" data-on-tap="EditingItem.Priority = 3">Low</button>
-              <button type="button" class="control black normal" data-ng-class="{selected: EditingItem.Priority == '2'}" data-on-tap="EditingItem.Priority = 2">Normal</button>
-              <button type="button" class="control black high" data-ng-class="{selected: EditingItem.Priority == '1'}" data-on-tap="EditingItem.Priority = 1">High</button>
-            </div>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" data-on-tap="UpdateItem()" class="control blue save one-half-wide">Save</button>
-            <button type="button" data-on-tap="DeleteItem()" class="control black delete one-half-wide">Delete</button>
-          </div>
-          <button type="submit" class="visuallyhidden"></button>
-          <!--To allow forms to submit on enter-->
-        </form>
+    <div class="modal-body">
+      <div>
+        <input type="text" data-ng-model="EditingItem.Name" required class="full-width" />
       </div>
-      <div class="wait"></div>
-    </div>
-
-    <div class="modal" id="email-list" data-on-swipe="CloseModal()">
-      <div class="noise">
-        <form name="EmailListForm" data-ng-submit="SendEmail()">
-
-          <div class="modal-header">
-            <h3>Send List</h3>
-          </div>
-
-          <div class="modal-body">
-            <div>
-              <input type="email" data-ng-model="To" required class="full-width" placeholder="name@email.com" />
-            </div>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" data-on-tap="SendEmail()" class="control blue save">Send email</button>
-          </div>
-          <button type="submit" class="visuallyhidden"></button>
-          <!--To allow forms to submit on enter-->
-        </form>
+      <div>
+        <label>Due date</label>
+        <input type="date" data-ng-model="EditingItem.DueDate" class="control transparent pull-right" />
       </div>
-      <div class="wait"></div>
+      <div>
+        <label>Time</label>
+        <input type="time" data-ng-model="EditingItem.DueTime" class="control transparent pull-right" />
+      </div>
+      <div class="priority">
+        <button type="button" class="control low" data-ng-class="{selected: EditingItem.Priority == '3'}" data-on-tap="EditingItem.Priority = 3">Low</button>
+        <button type="button" class="control normal" data-ng-class="{selected: EditingItem.Priority == '2'}" data-on-tap="EditingItem.Priority = 2">Normal</button>
+        <button type="button" class="control high" data-ng-class="{selected: EditingItem.Priority == '1'}" data-on-tap="EditingItem.Priority = 1">High</button>
+      </div>
     </div>
 
-  </div>
+    <div class="modal-footer">
+      <button type="button" data-on-tap="UpdateItem()" class="control save one-half-wide">Save</button>
+      <button type="button" data-on-tap="DeleteItem()" class="control delete one-half-wide">Delete</button>
+    </div>
+    <button type="submit" class="visuallyhidden"></button>
+    <!--To allow forms to submit on enter-->
+  </form>
+  <div class="wait"></div>
+</div>
+
+<div class="modal" id="email-list" data-on-swipe="CloseModal()">
+  <form name="EmailListForm" data-ng-submit="SendEmail()">
+
+    <div class="modal-body">
+      <div>
+        <input type="email" data-ng-model="To" required class="full-width" placeholder="name@email.com" />
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" data-on-tap="SendEmail()" class="control save">Send email</button>
+    </div>
+    <button type="submit" class="visuallyhidden"></button>
+    <!--To allow forms to submit on enter-->
+  </form>
+  <div class="wait"></div>
+</div>
+
+
+<div class="bottom-controls">
+  <button type="button" class="clear control" data-on-tap="ClearCompleted()">Clear ({{CompletedTotal}})</button>
 </div>

@@ -1,42 +1,5 @@
 @media all and (min-width: 479px) {
 
-  .go-over {
-    margin-top: 33%;
-  }
-
-  .modal-header {
-    display: none;
-  }
-
-  .modal-body {
-    margin-top: 1%;
-  }
-
-    .modal-body label {
-      top: 15px;
-    }
-
-    .modal-body input {
-      position: relative;
-      left: 5%;
-      float: left;
-      margin-top: 5px;
-      width: 40%;
-    }
-
-    .modal-body textarea {
-      height: 150px;
-    }
-
-    .modal-body .preview {
-      width: 29%;
-      margin-top: 5px;
-    }
-
-  .getting-started:before {
-    right: 3%;
-  }
-
   .list {
     width: 30.5%;
   }
@@ -54,11 +17,7 @@
         display: none;
       }
 
-  .summary {
-    margin: 1% 0% 1% 2%;
+  .task, .note {
+    padding: 15px;
   }
-
-    .summary p {
-      margin: 4% 8% 0% 8%;
-    }
 }

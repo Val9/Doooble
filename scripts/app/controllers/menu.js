@@ -27,10 +27,9 @@ function MenuController($rootScope, $scope, $location, Local) {
 
   // Search
   // ------
-  $scope.OpenSearch = function() {
+  $scope.OpenSearch = function () {
     $scope.CloseModal();
-    $location.path('/search');
-    $rootScope.Title = 'Search';
+    $location.path('/search/');
   };
 
   $scope.OpenEmailList = function () {
@@ -38,21 +37,22 @@ function MenuController($rootScope, $scope, $location, Local) {
   };
 
 
+  // Hashtags
+  // --------
+  $rootScope.OpenTag = function (tag) {
+    $location.path('/search/' + tag);
+  };
+
+
   // Close Modal
   // -----------
   $rootScope.CloseModal = function () {
     if ($('.modal').is('.open')) {
-      window.scroll(0, 0);
       $('.modal').removeClass('open').find('.wait').delay(550).show(0);
       $rootScope.ModalOpen = false;
       $('input, textarea').blur();
     }
   };
-
-
-  $scope.$on('CloseModal', function () {
-    $rootScope.CloseModal();
-  });
 
 
   // Onload of views
@@ -67,7 +67,6 @@ function MenuController($rootScope, $scope, $location, Local) {
   $scope.Back = function () {
     $scope.CloseModal();
     $location.path('/');
-    $rootScope.Title = 'Doooble';
   };
 
 

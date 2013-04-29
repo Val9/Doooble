@@ -10,7 +10,7 @@ var doooble = angular.module('Doooble', ['Doooble.filters', 'Doooble.services', 
     $routeProvider.when('/products/:listId', { templateUrl: 'pages/products.html', controller: TaskController });
     $routeProvider.when('/notes/:listId', { templateUrl: 'pages/notes.html', controller: NoteController });
 
-	$routeProvider.when('/search', { templateUrl: 'pages/search.html', controller: SearchController });
+    $routeProvider.when('/search/:tag', { templateUrl: 'pages/search.html', controller: SearchController });
 
     $routeProvider.otherwise({ redirectTo: '/' });
 

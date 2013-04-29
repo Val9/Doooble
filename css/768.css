@@ -5,22 +5,6 @@
     width: 500px;
   }
 
-  .go-under {
-    max-width: 285px;
-    width: 28%;
-    height: 100%;
-  }
-
-  .go-over {
-    position: relative;
-    left: 31%;
-    margin-top: 0;
-    min-height: 250px;
-    width: 67%;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-  }
-
   .label .name {
     font-size: 18px;
   }
@@ -46,20 +30,6 @@
     }
 
     .modal-body .preview {
-      width: 21%;
       margin-top: 25px;
     }
-
-  .task-header.list {
-    width: 100%;
-  }
-  
-  .summary {
-    top: 16px;
-    margin: 1%;
-  }
-
-  .quick-form .textbox-icon {
-    margin: -15px 0 0 3%;
-  }
 }

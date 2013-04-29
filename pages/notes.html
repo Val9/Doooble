@@ -1,105 +1,76 @@
 ﻿<div class="main" role="main" data-ng-cloak="ng-cloak">
-  <div>
-    <div class="go-under">
-      <ul class="lists">
-        <li class="task-header list odd">
-          <div class="image invisible" style="background-image: url({{List.Picture}});"></div>
-          <div class="label short">
-            <div class="name truncate invisible">{{List.Name | truncate}}</div>
-          </div>
-        </li>
-        <li class="task-header list summary">
-          <p class="truncate invisible">
-            {{List.Items.length}} <span data-ng-pluralize data-count="List.Items.length" data-when="{'one': 'note', 'other': 'notes'}"></span>
-          </p>
-        </li>
-      </ul>
-    </div>
 
-    <div class="go-over invisible">
-      <ul class="items">
-        <li data-ng-repeat="note in List.Items" data-ng-class-odd="'odd'" data-ng-class-even="'even'" class="note control gold" data-on-tap="OpenEditNote(note)">
-          <div class="name" data-ng-bind-html="note.Content | markdown"></div>
-        </li>
-      </ul>
-      <div class="bottom-controls">
-        <button type="button" class="add-new control blue" data-on-tap="OpenAddNote()">Add note</button>
-      </div>
+  <ul class="items tasks">
+    <li data-ng-repeat="note in List.Items" class="note" data-on-tap="OpenEditNote(note)">
+      <div class="name" data-ng-bind-html="note.Content | markdown"></div>
+    </li>
+
+    <li class="summary" data-ng-show="List.Items.length > 0">
+      <p class="truncate">
+        <span>Notes</span><span data-ng-bind="List.Items.length"></span>
+      </p>
       <div class="clearfix"></div>
-    </div>
+    </li>
+  </ul>
 
-    <div class="modal" id="new-note-item" data-on-swipe="CloseModal()">
-      <div class="noise">
-        <form name="NewNoteForm" data-ng-submit="AddNote()">
+</div>
 
-          <div class="modal-header">
-            <h3>New Note</h3>
-          </div>
+<div class="modal" id="new-note-item" data-on-swipe="CloseModal()">
+  <form name="NewNoteForm" data-ng-submit="AddNote()">
 
-          <div class="modal-body">
-            <div>
-              <textarea data-ng-model="Content" required class="control gold full-width task note"></textarea>
-            </div>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" data-on-tap="AddNote()" class="control blue save">Save</button>
-          </div>
-          <button type="submit" class="visuallyhidden"></button>
-          <!--To allow forms to submit on enter-->
-        </form>
+    <div class="modal-body">
+      <div>
+        <textarea data-ng-model="Content" required class="full-width" placeholder="...notes support markdown!"></textarea>
       </div>
-      <div class="wait"></div>
     </div>
 
-    <div class="modal" id="edit-note-item" data-on-swipe="CloseModal()">
-      <div class="noise">
-        <form name="EditNoteForm" data-ng-submit="UpdateNote()">
+    <div class="modal-footer">
+      <button type="button" data-on-tap="AddNote()" class="control save">Save</button>
+    </div>
+    <button type="submit" class="visuallyhidden"></button>
+    <!--To allow forms to submit on enter-->
+  </form>
+  <div class="wait"></div>
+</div>
 
-          <div class="modal-header">
-            <h3>Edit Note</h3>
-          </div>
+<div class="modal" id="edit-note-item" data-on-swipe="CloseModal()">
+  <form name="EditNoteForm" data-ng-submit="UpdateNote()">
 
-          <div class="modal-body">
-            <div>
-              <textarea data-ng-model="EditingNote.Content" required class="control gold full-width task note"></textarea>
-            </div>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" data-on-tap="UpdateNote()" class="control blue save one-half-wide">Save</button>
-            <button type="button" data-on-tap="DeleteNote()" class="control black delete one-half-wide">Delete</button>
-          </div>
-          <button type="submit" class="visuallyhidden"></button>
-          <!--To allow forms to submit on enter-->
-        </form>
+    <div class="modal-body">
+      <div>
+        <textarea data-ng-model="EditingNote.Content" required class="full-width"></textarea>
       </div>
-      <div class="wait"></div>
     </div>
 
-    <div class="modal" id="email-list" data-on-swipe="CloseModal()">
-      <div class="noise">
-        <form name="EmailListForm" data-ng-submit="SendEmail()">
+    <div class="modal-footer">
+      <button type="button" data-on-tap="UpdateNote()" class="control save one-half-wide">Save</button>
+      <button type="button" data-on-tap="DeleteNote()" class="control delete one-half-wide">Delete</button>
+    </div>
+    <button type="submit" class="visuallyhidden"></button>
+    <!--To allow forms to submit on enter-->
+  </form>
+  <div class="wait"></div>
+</div>
 
-          <div class="modal-header">
-            <h3>Send List</h3>
-          </div>
+<div class="modal" id="email-list" data-on-swipe="CloseModal()">
+  <form name="EmailListForm" data-ng-submit="SendEmail()">
 
-          <div class="modal-body">
-            <div>
-              <input type="email" data-ng-model="To" required class="full-width" placeholder="name@email.com" />
-            </div>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" data-on-tap="SendEmail()" class="control blue save">Send email</button>
-          </div>
-          <button type="submit" class="visuallyhidden"></button>
-          <!--To allow forms to submit on enter-->
-        </form>
+    <div class="modal-body">
+      <div>
+        <input type="email" data-ng-model="To" required class="full-width" placeholder="name@email.com" />
       </div>
-      <div class="wait"></div>
     </div>
 
-  </div>
+    <div class="modal-footer">
+      <button type="button" data-on-tap="SendEmail()" class="control save">Send email</button>
+    </div>
+    <button type="submit" class="visuallyhidden"></button>
+    <!--To allow forms to submit on enter-->
+  </form>
+  <div class="wait"></div>
+</div>
+
+
+<div class="bottom-controls">
+  <button type="button" class="add-new control" data-on-tap="OpenAddNote()">Add note</button>
 </div>

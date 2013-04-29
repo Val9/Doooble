@@ -2,6 +2,8 @@
 function ListController($rootScope, $scope, $location, $filter, User, Utils) {
   'use strict';
 
+  $rootScope.Title = 'Doooble';
+
   $rootScope.$broadcast('GetUser');
 
   // Adding New Lists

@@ -1,11 +1,6 @@
 'use strict';
 
 
-// For use with camera
-var destinationType;
-var pictureSource;
-
-
 var app = {
   initialize: function () {
     this.bind();
@@ -21,11 +16,7 @@ var app = {
 
     document.addEventListener("resume", this.resume, false);
 
-    // Setup the camera features
-    if (navigator.camera != null && navigator.splashscreen != null) {
-      destinationType = navigator.camera.DestinationType;
-      pictureSource = navigator.camera.PictureSourceType;
-
+    if (navigator.splashscreen != null) {
       // Hide the splash screen and fade in the app contents.
       navigator.splashscreen.hide();
     }
@@ -101,8 +92,6 @@ function onload() {
   $('.modal').css({
     'height': $(window).height() - 40
   });
-  // Prevent flash of bindings
-  $('.invisible').removeClass('invisible');
 }
 
 
@@ -119,40 +108,35 @@ window.onresize = function () {
 };
 
 
-// Quick textbox and Link listener
-// -------------------------------
+// Quick textbox and Link listeners
+// --------------------------------
 $(function () {
-  $(document).on('focus', '.quick-form input', function () {
 
-    $('.go-over').addClass('top');
-    $('.go-under').hide();
-    $('header').hide();
-    $('button.clear').hide();
-    window.scroll(0, 0);
+  // Get Angular scope from the known DOM element
+  var rootScope = angular.element(document.getElementById('body')).scope();
 
-  }).on('blur', '.quick-form input', function () {
-
-    $('.go-over').removeClass('top');
-    $('.go-under').show();
-    $('header').show();
-    $('button.clear').show();
-    window.scroll(0, 0);
-
-  });
-
-  $(document).on('click', '.note a', function(e) {
+  // Links in notes
+  $(document).on('touchstart', '.note a', function (e) {
     e.preventDefault();
 
-    // Get Angular scope from the known DOM element
-    var rootScope = angular.element(document.getElementById('body')).scope();
-    // Resync with DB
     rootScope.$apply(function () {
       rootScope.CloseModal();
     });
 
-    var url = $(this).attr('href');
-    window.open(url, '_blank', 'location=no');
+    window.open($(this).attr('href'), '_blank', 'location=no');
   });
+
+  // Opening hashtags
+  $(document).on('touchstart', 'span[data-hashtag]', function (e) {
+    e.preventDefault();
+    var hashtag = $(this).data('hashtag');
+
+    rootScope.$apply(function () {
+      rootScope.CloseModal();
+      rootScope.OpenTag(hashtag);
+    });
+  });
+
 });
 
 
@@ -176,3 +160,24 @@ $(function () {
     }
   });
 });
+
+
+// HashTags
+// --------
+function hashed(str) {
+  // order matters
+  var re = [
+      "\\b((?:https?|ftp)://[^\\s\"'<>]+)\\b",
+      "\\b(www\\.[^\\s\"'<>]+)\\b",
+      "\\b(\\w[\\w.+-]*@[\\w.-]+\\.[a-z]{2,6})\\b",
+      "#([a-z0-9]+)"];
+  re = new RegExp(re.join('|'), "gi");
+
+  return str.replace(re, function (match, url, www, mail, hashtag) {
+
+    if (hashtag)
+      return '<span class="hashtag" data-hashtag="' + hashtag + '">#' + hashtag + '</span>';
+
+    return match;
+  });
+}

@@ -1,12 +1,12 @@
 
 function AccountController($rootScope, $scope, $location, $route, User, Local, Utils) {
   'use strict';
-  
+
 
   // ViewModel
   // ---------
   $scope.GetUser = function () {
-    
+
     var localUser = Local.get();
     if (localUser == null) {
       $rootScope.User = new User({ Lists: [], DateModified: new Date() });
@@ -66,10 +66,10 @@ function AccountController($rootScope, $scope, $location, $route, User, Local, U
       Local.save($rootScope.User);
       try { $scope.UpdateNotifications(); } catch (e) { console.log(e.message); }
     }
-    $rootScope.$broadcast('CloseModal');
+    $rootScope.CloseModal();
   }, true);
 
-  
+
   $scope.UpdateNotifications = function () {
     plugins.localNotification.cancelAll();
 
@@ -128,7 +128,7 @@ function AccountController($rootScope, $scope, $location, $route, User, Local, U
   // Open List from notification
   // ---------------------------
   $scope.OpenList = function (id) {
-    $rootScope.$broadcast('CloseModal');
+    $rootScope.CloseModal();
     $location.path('/tasks/' + id);
   };
 
@@ -203,7 +203,7 @@ function AccountController($rootScope, $scope, $location, $route, User, Local, U
 
           // Close modal and load list page with new user data
           $route.reload();
-          $rootScope.$broadcast('CloseModal');
+          $rootScope.CloseModal();
 
         } else {
           if (navigator.notification != null) {
@@ -288,7 +288,7 @@ function AccountController($rootScope, $scope, $location, $route, User, Local, U
 
     // Close modal and load list page with new user data
     $route.reload();
-    $rootScope.$broadcast('CloseModal');
+    $rootScope.CloseModal();
 
     $rootScope.User = newUser;
   };

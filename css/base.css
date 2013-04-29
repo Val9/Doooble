@@ -4,12 +4,13 @@
 
 * {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-appearance: none;
   -webkit-touch-callout: none;
 }
 
 html, body {
   height: 100%;
-  font-family: "Ubuntu", Helvetica, Arial, "Lucida Grande", sans-serif;
+  color: #fff;
 }
 
 body {
@@ -18,20 +19,42 @@ body {
   -ms-user-select: none;
   -webkit-user-select: none;
   user-select: none;
-  background: url(../img/go-over.png) fixed repeat;
+  overflow: hidden;
+  background: #2c2c2c;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
 }
 
+h3 {
+  margin: 0.5em 0;
+  text-align: center;
+}
+
+html, body, input, textarea, button {
+  letter-spacing: 1px;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
 input, textarea, button {
-  font-family: "Ubuntu", Helvetica, Arial, "Lucida Grande", sans-serif;
+  border-radius: 0px;
+}
+
+input, textarea {
+  padding: 15px 5px;
+  width: 100%;
+  outline: none;
+  border: none;
+  background-color: #0a0a0a;
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
 }
 
 hr {
   border: none;
-  border-top: 1px solid #888;
+  border-top: 1px solid #000;
 }
 
 .transparent {
@@ -41,106 +64,16 @@ hr {
   background-color: transparent;
 }
 
-/* Common gradients for buttons and controls */
 .control {
-  border: 1px solid #cccccc;
-  border-color: #222 #222 #000000;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  border: none;
+  border-radius: 0px;
+  background: #222;
   color: #fff;
   font-size: 16px;
 }
 
-button.control:active {
-  -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
-  -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
-}
-
-.control.black {
-  background-color: #1a1a1a;
-  background-image: -moz-linear-gradient(top, #222, #000);
-  background-image: -o-linear-gradient(top, #222, #000);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#222), to(#000));
-  background-image: -webkit-linear-gradient(top, #222, #000);
-  background-image: linear-gradient(to bottom, #222, #000);
-  -webkit-text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-}
-
-.control.red {
-  border-color: #aa2c26 #aa2c26 #4d0408;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  background-color: #aa2c26;
-  background-image: -moz-linear-gradient(top, #aa2c26, #4d0408);
-  background-image: -o-linear-gradient(top, #aa2c26, #4d0408);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#aa2c26), to(#4d0408));
-  background-image: -webkit-linear-gradient(top, #aa2c26, #4d0408);
-  background-image: linear-gradient(to bottom, #aa2c26, #4d0408);
-  -webkit-text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-}
-
-.control.lightred {
-  border-color: #9a030c #9a030c #802420;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  background-color: #da4f49;
-  background-image: -moz-linear-gradient(top, #bd362f, #9a030c);
-  background-image: -o-linear-gradient(top, #bd362f, #9a030c);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#bd362f), to(#9a030c));
-  background-image: -webkit-linear-gradient(top, #bd362f, #9a030c);
-  background-image: linear-gradient(to bottom, #bd362f, #9a030c);
-  -webkit-text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-}
-
-.control.silver {
-  background-color: #f5f5f5;
-  background-image: -moz-linear-gradient(top, #fff, #e6e6e6);
-  background-image: -o-linear-gradient(top, #fff, #e6e6e6);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(#e6e6e6));
-  background-image: -webkit-linear-gradient(top, #fff, #e6e6e6);
-  background-image: linear-gradient(to bottom, #fff, #e6e6e6);
-  color: #333333;
-  -webkit-text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-}
-
-.control.gold {
-  background-color: #f8f4d9;
-  background-image: -moz-linear-gradient(top, #f8f4d9, #d8d5c3);
-  background-image: -o-linear-gradient(top, #f8f4d9, #d8d5c3);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f8f4d9), to(#d8d5c3));
-  background-image: -webkit-linear-gradient(top, #f8f4d9, #d8d5c3);
-  background-image: linear-gradient(to bottom, #f8f4d9, #d8d5c3);
-  color: #333333;
-  -webkit-text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-}
-
-.control.blue {
-  background-color: #345b79;
-  background-image: -moz-linear-gradient(top, #345b79, #222222);
-  background-image: -o-linear-gradient(top, #345b79, #222222);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#345b79), to(#222222));
-  background-image: -webkit-linear-gradient(top, #345b79, #222222);
-  background-image: linear-gradient(to bottom, #345b79, #222222);
-  color: #fff;
-  -webkit-text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-}
-
-.control.black.opaque {
-  background-color: rgba(0,0,0,0.4);
-  background-image: -moz-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0));
-  background-image: -o-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0));
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(0,0,0,0)), to(rgba(0,0,0,0)));
-  background-image: -webkit-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0));
-  background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0));
-  -webkit-text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+button:active {
+  background: #345b79;
 }
 
 .truncate {
@@ -156,54 +89,43 @@ button.control:active {
   display: none;
 }
 
-.noise {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: url(../img/go-under.jpg) repeat;
+::-webkit-input-placeholder {
+  color: #444;
 }
 
 header {
-  position: fixed;
+  position: absolute;
   top: 0;
   z-index: 100;
   overflow: hidden;
   width: 100%;
-  height: 40px;
+  height: 50px;
+  background: #1a1a1a;
+  color: #fff;
 }
-
-  header.control.blue {
-    -moz-box-shadow: 0px 2px 4px -1px #000, inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-    -webkit-box-shadow: 0px 2px 4px -1px #000, inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-    box-shadow: 0px 2px 4px -1px #000, inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-    -webkit-text-shadow: 0px 1px 1px #000;
-    text-shadow: 0px 1px 1px #000;
-  }
 
   header h1 {
     position: absolute;
     left: 50%;
     overflow: hidden;
     margin: 0 auto 0 -85px;
-    padding: 6px 0;
+    padding: 9px 0;
     width: 170px;
     text-align: center;
     -ms-text-overflow: ellipsis;
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
-    -webkit-text-shadow: 0px 1px 1px #000;
-    text-shadow: 0px 1px 1px #000;
     white-space: nowrap;
-    font-size: 22px;
+    font-size: 24px;
     /* Rest margins set by normalize.css */
   }
 
-  header h1.title {
-    font-family: 'Lobster', cursive;
-    font-size: 32px;
-    margin-top: -8px;
-  }
+    header h1.title {
+      margin-top: -8px;
+      padding: 12px 0;
+      font-size: 32px;
+      font-family: 'Lobster', cursive;
+    }
 
   header button {
     position: relative;
@@ -211,70 +133,57 @@ header {
     width: 50px;
     height: 85%;
     color: #fff;
-    -webkit-text-shadow: 0px 1px 1px #000;
-    text-shadow: 0px 1px 1px #000;
-    font-size: 22px;
+    font-size: 25px;
   }
 
     header button:active {
-      -webkit-text-shadow: 0px 0px 15px #fff;
-      text-shadow: 0px 0px 15px #fff;
+      background: none;
+      color: #000;
+      -webkit-text-shadow: 0px 0px 10px white;
+      text-shadow: 0px 0px 10px white;
     }
 
   header .pull-right {
     right: 2%;
     float: right;
-    text-align: right;
     padding-right: 2%;
+    padding-left: 2%;
+    text-align: right;
   }
 
   header .pull-left {
     left: 2%;
     float: left;
-    text-align: left;
+    padding-right: 2%;
     padding-left: 2%;
+    text-align: left;
   }
-  
+
 .main {
-  position: relative;
-  top: 40px;
+  -webkit-overflow-scrolling: touch;
+  position: absolute;
+  top: 50px;
+  right: 0;
+  bottom: 50px;
+  left: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
   margin: 0;
+  padding: 0 0 0 0;
   width: 100%;
 }
+
+  .main.full-length {
+    bottom: 0px;
+  }
 
 ul {
   margin: 0;
   padding: 0;
 }
 
-.go-under {
-  position: fixed;
-  top: 40px;
-  z-index: -1;
-  padding: 10px 8px 15px;
-  width: 100%;
-  background: url(../img/go-under.jpg) fixed repeat;
-}
-
-.go-over {
-  z-index: 1;
-  margin-top: 52%;
-  padding: 10px 8px 50px 8px;
-  min-height: 200px;
-  background: url(../img/go-over.png) repeat;
-  -webkit-box-shadow: 0px -4px 4px -2px #222;
-  box-shadow: 0px -4px 4px -2px #222;
-}
-
-  .go-over.top {
-    left: 0;
-    margin-top: -40px;
-    max-width: 100%;
-    width: 95%;
-  }
-
 .home {
-  padding: 10px 0px 0 2%;
+  padding: 10px 0 10px 2%;
 }
 
 /* Don't really like using ids but sometimes its ok! */
@@ -291,7 +200,8 @@ ul {
   }
 
 .bottom-controls {
-  position: fixed;
+  position: absolute;
+  right: 0;
   bottom: 0px;
   left: 0;
   margin: 0;
@@ -300,10 +210,11 @@ ul {
 }
 
   .bottom-controls button {
-    display: inline;
+    display: inline-block;
     float: right;
-    padding: 10px 0;
+    padding: 15px 0;
     width: 100%;
+    background: #1a1a1a;
     vertical-align: middle;
     text-align: center;
     font-size: 16px;
@@ -311,21 +222,9 @@ ul {
     cursor: pointer;
   }
 
-button.clear {
-  position: relative;
-  bottom: -50px;
-  left: 0;
-  opacity: 0;
-  -moz-transition: bottom 0.4s linear, opacity 0.4s linear;
-  -o-transition: bottom 0.4s linear, opacity 0.4s linear;
-  -webkit-transition: bottom 0.4s linear, opacity 0.4s linear;
-  transition: bottom 0.4s linear, opacity 0.4s linear;
-}
-
-  button.clear.enabled {
-    bottom: 0px;
-    opacity: 1;
-  }
+    .bottom-controls button:active {
+      background: #345b79;
+    }
 
 .modal {
   position: fixed;
@@ -335,20 +234,18 @@ button.clear {
   visibility: hidden;
   overflow: hidden;
   width: 100%;
-  background: #000;
-  -webkit-box-shadow: 0px 0px 20px 10px black;
-  box-shadow: 0px 0px 20px 10px black;
+  background: #111;
   color: #fff;
   font-size: 25px;
-  -moz-transition: all .3s linear;
-  -o-transition: all .3s linear;
-  -webkit-transition: all .3s linear;
-  transition: all .3s linear;
   -moz-transform: translateX(120%);
   -ms-transform: translateX(120%);
   -o-transform: translateX(120%);
   -webkit-transform: translateX(120%);
   transform: translateX(120%);
+  -moz-transition: all .3s linear;
+  -o-transition: all .3s linear;
+  -webkit-transition: all .3s linear;
+  transition: all .3s linear;
 }
 
   .modal [disabled] {
@@ -381,55 +278,44 @@ button.clear {
     transform: translateX(0%);
   }
 
-  .modal input.ng-dirty.ng-invalid,
-  .modal textarea.ng-dirty.ng-invalid {
-    background-color: rgba(122, 14, 14, 0.4);
+  .modal input, .modal textarea {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #444;
   }
 
-  .modal input.full-width,
-  .modal textarea.full-width {
-    width: 90%;
+input[type="number"], input[type="date"], input[type="time"] {
+  margin-top: 15px;
+  padding: 10px 0;
+  background-color: #0a0a0a;
+  font-size: 17px;
+}
+
+.modal input.ng-dirty.ng-invalid,
+.modal textarea.ng-dirty.ng-invalid {
+  border-bottom: 1px solid #aa2c26;
+}
+
+.modal button {
+  padding: 15px;
+  width: 100%;
+  color: #fff;
+  text-align: center;
+  line-height: 20px;
+}
+
+  .modal button.fat {
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #000;
+    font-size: 28px;
   }
 
-  .modal button {
-    padding: 10px;
-    width: 100%;
-    color: #fff;
-    text-align: center;
-    -webkit-text-shadow: 0px 1px 1px #000;
-    text-shadow: 0px 1px 1px #000;
-    line-height: 20px;
+  .modal button.one-quarter-high {
+    height: 25%;
   }
 
-    .modal button:active {
-      background-color: rgba(0, 0, 0, 1);
-      -webkit-text-shadow: 0px 0px 15px #fff;
-      text-shadow: 0px 0px 15px #fff;
-    }
-
-    .modal button.fat {
-      font-size: 30px;
-    }
-
-    .modal button.one-quarter-high {
-      height: 25%;
-    }
-
-    .modal button.one-half-wide,
-    button.one-half-wide {
-      width: 50%;
-    }
-
-  .modal .dark {
-    background: rgba(0,0,0,0.1);
-  }
-
-  .modal .darker {
-    background: rgba(0,0,0,0.2);
-  }
-
-  .modal .darkest {
-    background: rgba(0,0,0,0.3);
+  .modal button.one-half-wide,
+  button.one-half-wide {
+    width: 50%;
   }
 
   .modal button.save {
@@ -442,31 +328,29 @@ button.clear {
     position: absolute;
     bottom: 0px;
     left: 0;
-    background-color: rgba(122, 14, 14, 0.3);
+    background-color: #1a1a1a;
   }
 
     .modal button.delete:active {
-      background-color: rgba(122, 14, 14, 1);
+      background-color: #aa2c26;
     }
 
 .modal-header, .modal-body, .modal-footer {
   margin: auto;
   padding: 0;
-  max-width: 800px;
   height: 10%;
   text-align: center;
 }
 
 .modal-body {
+  margin-top: 10px;
   height: 55%;
 }
 
 .modal-header h3 {
   margin: 15px 0 0 0;
   padding: 0;
-  -webkit-text-shadow: 0px 1px 1px #000;
-  text-shadow: 0px 1px 1px #000;
-  font-size: 34px;
+  font-size: 28px;
 }
 
 .modal-body label {
@@ -478,65 +362,15 @@ button.clear {
   width: 35%;
   color: #fff;
   text-align: center;
-  font-size: 20px;
-}
-
-.modal-body input,
-.modal-body textarea {
-  margin-top: 15px;
-  padding: 10px 5px;
-  width: 90%;
-  outline: none;
-  border: none;
-  border-bottom: 1px solid #5a5a5a;
-  border-radius: 6px;
-  background-color: rgba(0, 0, 0, 0.4);
-  -webkit-box-shadow: 0px 0px 4px #222 inset;
-  box-shadow: 0px 0px 4px #222 inset;
-  color: #fff;
-  text-align: center;
-  -webkit-text-shadow: 0px 1px 1px #000;
-  text-shadow: 0px 1px 1px #000;
-  font-size: 20px;
-}
-
-.modal-body .datepicker-container {
-  position: relative;
-}
-
-.modal-body .datepicker {
-  color: transparent;
-  font-size: 18px;
-}
-
-  .modal-body .datepicker.active {
-    color: #fff;
-  }
-
-.modal-body .datepicker-label {
-  position: absolute;
-  top: -3px;
-  left: 50%;
-  margin-top: 15px;
-  margin-left: -46%;
-  padding: 11px 5px;
-  width: 90%;
-  outline: none;
-  border: none;
-  background: transparent;
-  color: #fff;
-  text-align: center;
-  font-size: 18px;
-  pointer-events: none;
+  font-size: 17px;
 }
 
 .modal-body textarea {
   display: inline-block;
   float: none;
   height: 200px;
-  color: #333;
   text-align: left;
-  font-size: 16px;
+  font-size: 18px;
 }
 
   .modal-body input.pull-right,
@@ -554,20 +388,13 @@ button.clear {
   cursor: pointer;
 }
 
-  .modal-body .preview .iconic.camera {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(0,0,0,0.7);
-  }
-
-.home .list:active {
-  -moz-transform: scale3d(0.8, 0.8, 0.8);
-  -ms-transform: scale3d(0.8, 0.8, 0.8);
-  -o-transform: scale3d(0.8, 0.8, 0.8);
-  -webkit-transform: scale3d(0.8, 0.8, 0.8);
-  transform: scale3d(0.8, 0.8, 0.8);
+.in-list-form {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
 }
 
 .lists {
@@ -594,14 +421,6 @@ button.clear {
   box-shadow: 0px 1px 1px 0px #333;
   list-style: none;
   cursor: pointer;
-  -moz-transition: all .1s linear;
-  -o-transition: all .1s linear;
-  -webkit-transition: all .1s linear;
-  transition: all .1s linear;
-  -moz-transition-delay: 0.3s;
-  -o-transition-delay: 0.3s;
-  -webkit-transition-delay: 0.3s;
-  transition-delay: 0.3s;
 }
 
 .image {
@@ -644,8 +463,6 @@ button.clear {
   height: 40px;
   background: rgba(0,0,0,0.85);
   color: #fff;
-  -webkit-text-shadow: 0px 1px 1px #000;
-  text-shadow: 0px 1px 1px #000;
 }
 
   .label.short {
@@ -720,32 +537,28 @@ button.clear {
   position: relative;
   display: block;
   overflow: hidden;
-  margin: 2% 1%;
-  padding: 2%;
-  width: 94%;
-  border-radius: 6px;
+  margin: 1px 0 0 0;
+  padding: 4% 2%;
+  border: none;
+  border-bottom: 1px solid #000;
+  border-left: 1px solid #000;
+  background: #222;
   list-style: none;
   font-size: 18px;
   cursor: pointer;
-  -webkit-box-shadow: 0px 0px 0px #333;
-  box-shadow: 0px 0px 0px #333;
-  -moz-transition: opacity 0.4s linear, box-shadow 0.4s linear;
-  -o-transition: opacity 0.4s linear, box-shadow 0.4s linear;
-  -webkit-transition: opacity 0.4s linear, box-shadow 0.4s linear;
-  transition: opacity 0.4s linear, box-shadow 0.4s linear;
-}
-
-.task.sorting {
-  -webkit-box-shadow: 0px 0px 15px #333;
-  box-shadow: 0px 0px 15px #333;
 }
 
 li.droparea {
-  margin: 2% 0% 2% 1%;
-  background: rgba(0,0,0,0.1);
-  -webkit-box-shadow: 0px 1px 2px 1px #555 inset;
-  box-shadow: 0px 1px 2px 1px #555 inset;
-  border-radius: 6px;
+  margin: 1px 0 0 0;
+  background: #000;
+}
+
+.task.lightred {
+  border-left: 2px solid #aa2c26;
+}
+
+.task.silver {
+  border-left: 2px solid #345b79;
 }
 
 .task .name span,
@@ -766,10 +579,6 @@ li.droparea {
     color: #aa2c26;
   }
 
-.task.lightred .date.overdue {
-  color: #eee;
-}
-
 .task .checkbox,
 .task .name,
 .task .price,
@@ -789,40 +598,16 @@ li.droparea {
   margin-top: -13px;
   width: 25px;
   height: 25px;
-  border-radius: 6px;
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #000;
   text-align: center;
-  -moz-transition: opacity 0.4s linear;
-  -o-transition: opacity 0.4s linear;
-  -webkit-transition: opacity 0.4s linear;
-  transition: opacity 0.4s linear;
 }
 
-.task.control.gold .checkbox {
-  border: 1px solid #fffce5;
-  background: #faf7e3;
-  -webkit-box-shadow: 0px 1px 2px 1px #555 inset;
-  box-shadow: 0px 1px 2px 1px #555 inset;
-}
+  .task .checkbox .check {
+    opacity: 0;
+  }
 
-.task.control.lightred .checkbox {
-  border: 1px solid #aa2c26;
-  background: #aa2c26;
-  -webkit-box-shadow: 0px 1px 2px 1px #5a1313 inset;
-  box-shadow: 0px 1px 2px 1px #5a1313 inset;
-}
-
-.task.control.silver .checkbox {
-  border: 1px solid #fff;
-  background: #fff;
-  -webkit-box-shadow: 0px 1px 2px 1px #555 inset;
-  box-shadow: 0px 1px 2px 1px #555 inset;
-}
-
-.task .checkbox .check {
-  opacity: 0;
-}
-
-.task.complete .checkbox .check {
+.task.done .checkbox .check {
   opacity: 1;
 }
 
@@ -837,43 +622,40 @@ li.droparea {
 
 .wishes .task .price,
 .products .task .price {
+  position: absolute;
   top: 50%;
   right: 10%;
-  width: 15%;
-  font-size: 12px;
   display: inline-block;
+  margin-top: -8px;
+  width: 15%;
   height: 14px;
   text-align: right;
-  position: absolute;
-  margin-top: -8px;
+  font-size: 12px;
 }
 
 .products .task .quantity {
+  position: absolute;
   top: 50%;
   left: 12%;
-  font-size: 12px;
   display: inline-block;
-  height: 14px;
-  text-align: left;
-  position: absolute;
   margin-top: -8px;
   width: 14%;
+  height: 14px;
+  text-align: left;
+  font-size: 12px;
 }
 
-.task.silver {
-  color: #7997ae;
+.task.done {
+  opacity: 1 !important; /* to override JQuery framework inline styling */
 }
 
-.task.complete {
-  opacity: 0.5 !important; /* to override JQuery framework inline styling */
-}
-
-  .task.complete .name,
-  .task.complete .price,
-  .task.complete .quantity,
-  .task.complete .date,
-  .task.complete .date.overdue {
-    color: #aaa;
+  .task.done .name,
+  .task.done .price,
+  .task.done .quantity,
+  .task.done .date,
+  .task.done .date.overdue {
+    color: #777;
+    font-style: italic;
   }
 
 .handle {
@@ -894,115 +676,30 @@ li.droparea {
   cursor: move;
 }
 
-.task.lightred .handle {
-  color: #eee;
-}
-
-.summary {
-  position: relative;
-  top: 3px;
-  display: block;
-  float: left;
-  padding: 2px;
-  height: 134px;
-  border: none;
-  border-radius: 0 0 25px 7px / 7px 25px;
-  background-color: #f8f4d9;
-  -webkit-box-shadow: 0px 2px 5px #292929, -1px -4px 7px -6px #000 inset;
-  box-shadow: 0px 2px 5px #292929, -1px -4px 7px -6px #000 inset;
-  color: #444;
-  font-size: 15px;
-  font-family: 'blokletters', cursive;
-}
-
-  .summary:before {
-    position: absolute;
-    top: -145px;
-    left: 50%;
-    margin-left: -40px;
-    width: 80px;
-    height: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    background: rgba(254, 254, 254, .6);
-    -webkit-box-shadow: 0px 0 3px rgba(0,0,0,0.1);
-    box-shadow: 0px 0 3px rgba(0,0,0,0.1);
-    content: '';
-    -moz-transform: rotate(2deg);
-    -ms-transform: rotate(2deg);
-    -o-transform: rotate(2deg);
-    -webkit-transform: rotate(2deg);
-    transform: rotate(2deg);
-  }
-
-  .summary p {
-    position: relative;
-    display: block;
-    float: left;
-    margin: 6% 8% 0% 8%;
-    width: 96%;
-  }
-
 .priority button {
   display: inline-block;
-  margin-top: 15px;
-  padding: 10px 0;
+  margin-top: 20px;
+  padding: 15px 0;
   width: 31%;
   background-color: rgba(0, 0, 0, 0.10);
-  font-size: 18px;
+  font-size: 17px;
   cursor: pointer;
-  -moz-transition: background-color 0.3s linear;
-  -o-transition: background-color 0.3s linear;
-  -webkit-transition: background-color 0.3s linear;
-  transition: background-color 0.3s linear;
 }
-
-  .priority button.low {
-    border-radius: 6px 0 0 6px;
-  }
 
   .priority button.normal {
     margin: -6px;
   }
 
-  .priority button.high {
-    border-radius: 0 6px 6px 0;
-  }
-
   .priority button.selected.low {
-    background-color: #f5f5f5;
-    background-image: -moz-linear-gradient(top, #fff, #e6e6e6);
-    background-image: -o-linear-gradient(top, #fff, #e6e6e6);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(#e6e6e6));
-    background-image: -webkit-linear-gradient(top, #fff, #e6e6e6);
-    background-image: linear-gradient(to bottom, #fff, #e6e6e6);
-    color: #7997ae;
-    -webkit-text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    border-bottom: 2px solid #345b79;
   }
 
   .priority button.selected.normal {
-    background-color: #f8f4d9;
-    background-image: -moz-linear-gradient(top, #f8f4d9, #d8d5c3);
-    background-image: -o-linear-gradient(top, #f8f4d9, #d8d5c3);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f8f4d9), to(#d8d5c3));
-    background-image: -webkit-linear-gradient(top, #f8f4d9, #d8d5c3);
-    background-image: linear-gradient(to bottom, #f8f4d9, #d8d5c3);
-    color: #333333;
-    -webkit-text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    border-bottom: 2px solid #000;
   }
 
   .priority button.selected.high {
-    border-color: #9a030c #9a030c #802420;
-    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-    background-color: #da4f49;
-    background-image: -moz-linear-gradient(top, #bd362f, #9a030c);
-    background-image: -o-linear-gradient(top, #bd362f, #9a030c);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#bd362f), to(#9a030c));
-    background-image: -webkit-linear-gradient(top, #bd362f, #9a030c);
-    background-image: linear-gradient(to bottom, #bd362f, #9a030c);
-    -webkit-text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    border-bottom: 2px solid #aa2c26;
   }
 
 .note h1,
@@ -1058,6 +755,7 @@ li.droparea {
 .note code {
   padding: 3px;
   background-color: #d5cc95;
+  color: #222;
   font-size: 0.8em;
 }
 
@@ -1072,7 +770,29 @@ li.droparea {
 
 .note a {
   color: #3376aa;
+  text-decoration: none;
 }
+
+.task .name span .hashtag {
+  display: inline;
+  color: orange;
+}
+
+.summary {
+  color: #000;
+  text-align: center;
+  font-size: 18px;
+}
+
+  .summary p {
+    display: inline-block;
+    width: 23%;
+  }
+
+  .summary span {
+    display: block;
+    margin: 10px 0;
+  }
 
 .ribbon-wrapper {
   position: absolute;
@@ -1091,17 +811,10 @@ li.droparea {
   padding: 5px 0;
   width: 120px;
   background-color: #aa2c26;
-  background-image: -moz-linear-gradient(top, #aa2c26, #4d0408);
-  background-image: -o-linear-gradient(top, #aa2c26, #4d0408);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#aa2c26), to(#4d0408));
-  background-image: -webkit-linear-gradient(top, #aa2c26, #4d0408);
-  background-image: linear-gradient(to bottom, #aa2c26, #4d0408);
   -webkit-box-shadow: 0px 3px 3px rgba(0,0,0,0.3);
   box-shadow: 0px 3px 3px rgba(0,0,0,0.3);
   color: #fff;
   text-align: center;
-  -webkit-text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   font-size: 15px;
   -moz-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
@@ -1112,11 +825,6 @@ li.droparea {
 
 .ribbon-blue {
   background-color: #345b79;
-  background-image: -moz-linear-gradient(top, #345b79, #222);
-  background-image: -o-linear-gradient(top, #345b79, #222);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#345b79), to(#222));
-  background-image: -webkit-linear-gradient(top, #345b79, #222);
-  background-image: linear-gradient(to bottom, #345b79, #222);
 }
 
 .ribbon:before, .ribbon:after {
@@ -1150,58 +858,28 @@ li.droparea {
     padding: 4px 0 0 0;
     width: 15%;
     height: 40px;
-    background: white;
-    -webkit-box-shadow: 0px 0px 2px 2px #3A3A3A inset;
-    box-shadow: 0px 0px 2px 2px #3A3A3A inset;
-    color: #000;
-    -webkit-text-shadow: 0px 1px 1px #fff;
-    text-shadow: 0px 1px 1px #fff;
+    background: #000;
   }
 
 .pin {
   text-transform: uppercase;
+  letter-spacing: 5px;
 }
 
 .instructions {
   margin: 10px auto;
-  width: 90%;
-  -webkit-text-shadow: 0px 1px 1px #000;
-  text-shadow: 0px 1px 1px #000;
   font-size: 15px;
 }
 
   .instructions button {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border-radius: 6px;
+    margin-top: 5px;
+    margin-bottom: 45px;
   }
 
-  .instructions hr {
-    margin: 30px auto;
-  }
-
-.quick-form {
-  position: relative;
-  overflow: hidden;
-  margin: 1%;
-  padding: 0;
-  list-style: none;
+.list-results.task .name {
+  margin-left: 2%;
+  width: 96%;
 }
-
-  .quick-form input {
-    box-sizing: border-box;
-    padding: 4% 3%;
-    width: 100%;
-    border: 1px solid #fff;
-    -webkit-border-radius: 6px;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    border-radius: 6px;
-    background: #fff;
-    -webkit-box-shadow: 0px 1px 2px 1px #555 inset;
-    box-shadow: 0px 1px 2px 1px #555 inset;
-    font-size: 18px;
-  }
 
 /* PRELOAD IMAGES */
 body:after {

@@ -1,3 +1,28 @@
-﻿<div class="main" role="main" data-ng-cloak="ng-cloak">
-  
+﻿<div class="main full-length" role="main" data-ng-cloak="ng-cloak">
+
+  <ul class="tasks">
+    <li class="in-list-form" data-ng-show="Tag == ''">
+      <input type="text" data-ng-model="Q" placeholder="Search Doooble..." />
+    </li>
+    <li data-ng-show="FilteredLists.length > 0 && Q.length > 0 && Tag == ''">
+      <h3>Lists</h3>
+    </li>
+    <li data-ng-repeat="list in FilteredLists" class="list-results task" data-ng-show="FilteredLists.length > 0 && Q.length > 0">
+      <div class="name" data-on-tap="OpenList(list)">
+        <span data-ng-bind-html-unsafe="list.Name | hashtags"></span>
+      </div>
+    </li>
+    <li data-ng-show="FilteredItems.length > 0 && Q.length > 0 && Tag == ''">
+      <h3>Tasks</h3>
+    </li>
+    <li data-ng-repeat="task in FilteredItems" class="task-results task" data-ng-class="{lightred: task.Priority == '1',  silver: task.Priority == '3', done: task.Complete}" data-ng-show="FilteredItems.length > 0 && Q.length > 0">
+      <div class="checkbox">
+        <div class="iconic check"></div>
+      </div>
+      <div class="name" data-on-tap="OpenList(task.List)">
+        <span data-ng-bind-html-unsafe="task.Name | hashtags"></span>
+      </div>
+    </li>
+  </ul>
+
 </div>
